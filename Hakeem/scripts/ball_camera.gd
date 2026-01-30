@@ -26,15 +26,21 @@ func _process(delta) -> void:
 func camera_follow() -> void:
 	vector = Vector3(golf_ball.transform.origin.x,position.y,golf_ball.transform.origin.z)
 	
-	self.transform.origin = self.transform.origin.lerp(vector,1)
+	self.transform.origin = self.transform.origin.lerp(vector,0.2)
 	
 #Translating the mouse position from the screen into 3d world.
 func camera_raycast():
-	mouse_pos = get_viewport().get_mouse_position()
-	from = project_ray_origin(mouse_pos) 
-	to = from + project_ray_normal(mouse_pos) * ray_length
-	space = get_world_3d().direct_space_state
-	#Raycast checking only the second collision mask.
-	query = PhysicsRayQueryParameters3D.create(from,to,2)
-	
-	return space.intersect_ray(query)
+	var mouse_pos = get_viewport().get_mouse_position()
+
+	var ray_origin = project_ray_origin(mouse_pos)
+	var ray_dir = project_ray_normal(mouse_pos)
+
+	# Plane at the golf ball's height
+	var plane = Plane(Vector3.UP, golf_ball.global_transform.origin.y)
+
+	var hit_pos = plane.intersects_ray(ray_origin, ray_dir)
+
+	if hit_pos:
+		return { "position": hit_pos }
+
+	return {}
