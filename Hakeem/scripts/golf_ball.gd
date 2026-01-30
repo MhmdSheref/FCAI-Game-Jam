@@ -4,7 +4,8 @@ extends RigidBody3D
 @export var accel : int = 5
 
 @onready var scaler : Marker3D = $Scaler
-@onready var camera_3d = $Camera3D
+@onready var camera_3d: Camera3D = $camera_pivot/Camera3D
+
 
 var selected : bool = false
 var velocity : Vector3

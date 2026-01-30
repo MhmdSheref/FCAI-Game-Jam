@@ -1,0 +1,231 @@
+[gd_scene format=3 uid="uid://b13sr2yp32eje"]
+
+[node name="Node3D" type="Node3D" unique_id=28873222]
+
+[node name="block-borders2" type="Node3D" parent="." unique_id=1530916260]
+
+[node name="block2" type="Node3D" parent="." unique_id=2013971403]
+
+[node name="bump-down-walls2" type="Node3D" parent="." unique_id=963553410]
+
+[node name="bump-down2" type="Node3D" parent="." unique_id=1069013980]
+
+[node name="bump-walls2" type="Node3D" parent="." unique_id=258569641]
+
+[node name="bump2" type="Node3D" parent="." unique_id=1997152748]
+
+[node name="castle2" type="Node3D" parent="." unique_id=1518531760]
+
+[node name="corner2" type="Node3D" parent="." unique_id=1166474543]
+
+[node name="crest2" type="Node3D" parent="." unique_id=685587398]
+
+[node name="end2" type="Node3D" parent="." unique_id=1166789285]
+
+[node name="gap2" type="Node3D" parent="." unique_id=831372940]
+
+[node name="hill-corner2" type="Node3D" parent="." unique_id=310724275]
+
+[node name="hill-round2" type="Node3D" parent="." unique_id=1771430778]
+
+[node name="hill-square2" type="Node3D" parent="." unique_id=1315710950]
+
+[node name="hole-open2" type="Node3D" parent="." unique_id=566106187]
+
+[node name="hole-round2" type="Node3D" parent="." unique_id=1047885608]
+
+[node name="hole-square2" type="Node3D" parent="." unique_id=1125973764]
+
+[node name="inner-corner2" type="Node3D" parent="." unique_id=1398162419]
+
+[node name="narrow-block2" type="Node3D" parent="." unique_id=800278408]
+
+[node name="narrow-round2" type="Node3D" parent="." unique_id=1638550931]
+
+[node name="narrow-square2" type="Node3D" parent="." unique_id=187286723]
+
+[node name="obstacle-block2" type="Node3D" parent="." unique_id=553291717]
+
+[node name="obstacle-diamond2" type="Node3D" parent="." unique_id=2102630641]
+
+[node name="obstacle-triangle2" type="Node3D" parent="." unique_id=85608779]
+
+[node name="open2" type="Node3D" parent="." unique_id=1994776965]
+
+[node name="ramp-high2" type="Node3D" parent="." unique_id=1791644239]
+
+[node name="ramp-large-side2" type="Node3D" parent="." unique_id=1277138548]
+
+[node name="ramp-large2" type="Node3D" parent="." unique_id=966760465]
+
+[node name="ramp-low2" type="Node3D" parent="." unique_id=1394758579]
+
+[node name="ramp-medium2" type="Node3D" parent="." unique_id=708269879]
+
+[node name="ramp-sharp2" type="Node3D" parent="." unique_id=305088311]
+
+[node name="ramp-side2" type="Node3D" parent="." unique_id=904887741]
+
+[node name="ramp-square2" type="Node3D" parent="." unique_id=244180336]
+
+[node name="ramp2" type="Node3D" parent="." unique_id=242561553]
+
+[node name="round-corner-a2" type="Node3D" parent="." unique_id=461342808]
+
+[node name="round-corner-b2" type="Node3D" parent="." unique_id=1201072316]
+
+[node name="round-corner-c2" type="Node3D" parent="." unique_id=945367609]
+
+[node name="round-large-corner-open2" type="Node3D" parent="." unique_id=1714652422]
+
+[node name="round-large-corner2" type="Node3D" parent="." unique_id=1928223211]
+
+[node name="side2" type="Node3D" parent="." unique_id=882419638]
+
+[node name="skew-corner2" type="Node3D" parent="." unique_id=1826946967]
+
+[node name="skew-large-corner-open2" type="Node3D" parent="." unique_id=830057885]
+
+[node name="skew-large-corner2" type="Node3D" parent="." unique_id=498486502]
+
+[node name="spline-concave-cap-back2" type="Node3D" parent="." unique_id=1836235766]
+
+[node name="spline-concave-cap-front2" type="Node3D" parent="." unique_id=989085657]
+
+[node name="spline-concave-corner-large-ramp2" type="Node3D" parent="." unique_id=829997823]
+
+[node name="spline-concave-corner-large2" type="Node3D" parent="." unique_id=1966746882]
+
+[node name="spline-concave-corner-small-ramp2" type="Node3D" parent="." unique_id=1846419946]
+
+[node name="spline-concave-corner-small2" type="Node3D" parent="." unique_id=525506984]
+
+[node name="spline-concave-curve2" type="Node3D" parent="." unique_id=1054760252]
+
+[node name="spline-concave-looping2" type="Node3D" parent="." unique_id=1258804537]
+
+[node name="spline-concave-straight-bend-large2" type="Node3D" parent="." unique_id=1444178088]
+
+[node name="spline-concave-straight-bend2" type="Node3D" parent="." unique_id=454283523]
+
+[node name="spline-concave-straight-bump-down2" type="Node3D" parent="." unique_id=1649498567]
+
+[node name="spline-concave-straight-bump-up2" type="Node3D" parent="." unique_id=1295182371]
+
+[node name="spline-concave-straight-hill-beginning2" type="Node3D" parent="." unique_id=822077079]
+
+[node name="spline-concave-straight-hill-complete-half2" type="Node3D" parent="." unique_id=1652053805]
+
+[node name="spline-concave-straight-hill-complete2" type="Node3D" parent="." unique_id=1996564743]
+
+[node name="spline-concave-straight-hill-end2" type="Node3D" parent="." unique_id=1508827170]
+
+[node name="spline-concave-straight-skew-left-side2" type="Node3D" parent="." unique_id=1094169022]
+
+[node name="spline-concave-straight-skew-left2" type="Node3D" parent="." unique_id=658916641]
+
+[node name="spline-concave-straight-skew-right-side2" type="Node3D" parent="." unique_id=1202229461]
+
+[node name="spline-concave-straight-skew-right2" type="Node3D" parent="." unique_id=372328237]
+
+[node name="spline-concave-straight2" type="Node3D" parent="." unique_id=1115705027]
+
+[node name="spline-concave2" type="Node3D" parent="." unique_id=77265226]
+
+[node name="spline-default-cap-back2" type="Node3D" parent="." unique_id=2013307457]
+
+[node name="spline-default-cap-front2" type="Node3D" parent="." unique_id=129543240]
+
+[node name="spline-default-corner-large-ramp2" type="Node3D" parent="." unique_id=664997775]
+
+[node name="spline-default-corner-large2" type="Node3D" parent="." unique_id=1291936699]
+
+[node name="spline-default-corner-small-ramp2" type="Node3D" parent="." unique_id=940945544]
+
+[node name="spline-default-corner-small2" type="Node3D" parent="." unique_id=566943102]
+
+[node name="spline-default-curve2" type="Node3D" parent="." unique_id=2076268015]
+
+[node name="spline-default-looping2" type="Node3D" parent="." unique_id=90056873]
+
+[node name="spline-default-straight-bend-large2" type="Node3D" parent="." unique_id=972979843]
+
+[node name="spline-default-straight-bend2" type="Node3D" parent="." unique_id=2093836473]
+
+[node name="spline-default-straight-bump-down2" type="Node3D" parent="." unique_id=2138620100]
+
+[node name="spline-default-straight-bump-up2" type="Node3D" parent="." unique_id=999626834]
+
+[node name="spline-default-straight-hill-beginning2" type="Node3D" parent="." unique_id=395505288]
+
+[node name="spline-default-straight-hill-complete-half2" type="Node3D" parent="." unique_id=258985239]
+
+[node name="spline-default-straight-hill-complete2" type="Node3D" parent="." unique_id=1865851004]
+
+[node name="spline-default-straight-hill-end2" type="Node3D" parent="." unique_id=1052891102]
+
+[node name="spline-default-straight-skew-left-side2" type="Node3D" parent="." unique_id=284527624]
+
+[node name="spline-default-straight-skew-left2" type="Node3D" parent="." unique_id=664991710]
+
+[node name="spline-default-straight-skew-right-side2" type="Node3D" parent="." unique_id=1418826473]
+
+[node name="spline-default-straight-skew-right2" type="Node3D" parent="." unique_id=684761480]
+
+[node name="spline-default-straight2" type="Node3D" parent="." unique_id=1768561290]
+
+[node name="spline-default2" type="Node3D" parent="." unique_id=1142514968]
+
+[node name="split-start2" type="Node3D" parent="." unique_id=2078159047]
+
+[node name="split-t2" type="Node3D" parent="." unique_id=988974096]
+
+[node name="split-walls-to-open2" type="Node3D" parent="." unique_id=1266535024]
+
+[node name="split2" type="Node3D" parent="." unique_id=119951775]
+
+[node name="square-corner-a2" type="Node3D" parent="." unique_id=277067834]
+
+[node name="start2" type="Node3D" parent="." unique_id=152028279]
+
+[node name="straight2" type="Node3D" parent="." unique_id=1249704726]
+
+[node name="structure-gate-building2" type="Node3D" parent="." unique_id=1259447369]
+
+[node name="structure-gate-wide2" type="Node3D" parent="." unique_id=628444117]
+
+[node name="structure-gate2" type="Node3D" parent="." unique_id=1875342649]
+
+[node name="structure-gates2" type="Node3D" parent="." unique_id=1283686521]
+
+[node name="structure-windmill2" type="Node3D" parent="." unique_id=1743729477]
+
+[node name="support-bottom2" type="Node3D" parent="." unique_id=1243976028]
+
+[node name="support-low-bottom2" type="Node3D" parent="." unique_id=1360457539]
+
+[node name="support-low2" type="Node3D" parent="." unique_id=1917222456]
+
+[node name="support2" type="Node3D" parent="." unique_id=118410651]
+
+[node name="supports-bottom2" type="Node3D" parent="." unique_id=288574547]
+
+[node name="supports-low-bottom2" type="Node3D" parent="." unique_id=111352055]
+
+[node name="supports-low2" type="Node3D" parent="." unique_id=1661309224]
+
+[node name="supports2" type="Node3D" parent="." unique_id=1722997604]
+
+[node name="tunnel-double2" type="Node3D" parent="." unique_id=1513234717]
+
+[node name="tunnel-narrow2" type="Node3D" parent="." unique_id=729633602]
+
+[node name="tunnel-wide2" type="Node3D" parent="." unique_id=506062904]
+
+[node name="wall-left2" type="Node3D" parent="." unique_id=349816107]
+
+[node name="wall-right2" type="Node3D" parent="." unique_id=635524468]
+
+[node name="walls-to-open2" type="Node3D" parent="." unique_id=1024414162]
+
+[node name="windmill2" type="Node3D" parent="." unique_id=1784502376]

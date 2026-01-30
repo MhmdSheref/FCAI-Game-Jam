@@ -42,8 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.086592965, 0)
 script = ExtResource("3_tw82i")
 
 [node name="Camera3D" type="Camera3D" parent="camera_pivot" unique_id=1659481089]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 0.37141645, 0.9284664, 0, -0.9284664, 0.37141645, 0, 1.8378751, 1.9291879)
 script = ExtResource("1_d60mj")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

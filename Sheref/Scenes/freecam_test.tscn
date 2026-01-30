@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://diwy4d4eq626d"]
 
 [ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="1_dqbdu"]
-[ext_resource type="Script" uid="uid://w35rocmctxqt" path="res://Sheref/Scenes/raycast_place.gd" id="2_wseku"]
+[ext_resource type="Script" path="res://Sheref/Scenes/raycast_place.gd" id="2_wseku"]
 [ext_resource type="PackedScene" uid="uid://bl1pfd77ayust" path="res://Sheref/Scenes/box.tscn" id="3_ab7ll"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ab7ll"]
