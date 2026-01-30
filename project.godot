@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="FCAI Game Jam"
-run/main_scene="uid://b4d6865hcfo26"
+run/main_scene="uid://diwy4d4eq626d"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/freecam_3D/plugin.cfg")
 
 [input]
 

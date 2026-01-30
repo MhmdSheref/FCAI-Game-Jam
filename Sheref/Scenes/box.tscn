@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bl1pfd77ayust"]
+
+[ext_resource type="Script" uid="uid://beuvt36oitr1n" path="res://Sheref/Scenes/buildable.gd" id="1_b8wpq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twfc7"]
+transparency = 1
+
+[node name="CSGBox3D" type="CSGBox3D" unique_id=1031803753]
+material = SubResource("StandardMaterial3D_twfc7")
+script = ExtResource("1_b8wpq")
