@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b4d6865hcfo26"]
+
+[ext_resource type="MeshLibrary" uid="uid://dyooyv1tv6vsc" path="res://Assets/golfFr.meshlib" id="1_eqgj2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3tett"]
+
+[node name="Node3D" type="Node3D" unique_id=783204497]
+
+[node name="GridMap" type="GridMap" parent="." unique_id=1730057311]
+mesh_library = ExtResource("1_eqgj2")
+cell_size = Vector3(0.5, 0.3, 0.5)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(65526, 6, 1048670, 65529, 6, 1048670, 65531, 6, 1048580, 65507, 6, 1048580, 65533, 6, 1048580, 0, 7, 1048614, 1, 10, 33)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=962187681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1907271791]
+shape = SubResource("SphereShape3D_3tett")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D" unique_id=525903792]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=216422941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 6.512829)
