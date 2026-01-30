@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://brvr0b3yd08hg"]
+
+[ext_resource type="Script" uid="uid://bqw431u4gch8c" path="res://Hakeem/scripts/ball_camera.gd" id="1_d60mj"]
+[ext_resource type="Script" uid="uid://dlxiis7mxjxjp" path="res://Hakeem/scripts/golf_ball.gd" id="1_ij5cq"]
+[ext_resource type="Material" uid="uid://cqpqqba33xhj5" path="res://Hakeem/assets/materials/golf_ball_material.tres" id="3_edty1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edty1"]
+friction = 0.4
+rough = true
+bounce = 0.35
+
+[sub_resource type="SphereMesh" id="SphereMesh_25osk"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d60mj"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_edty1"]
+
+[node name="Ball" type="RigidBody3D" unique_id=411611324]
+physics_material_override = SubResource("PhysicsMaterial_edty1")
+script = ExtResource("1_ij5cq")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1659481089]
+transform = Transform3D(1, 0, 0, 0, 0.06700534, 0.9977526, 0, -0.9977526, 0.06700534, 0, 6.4803123, 4.425426)
+script = ExtResource("1_d60mj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1325759386]
+mesh = SubResource("SphereMesh_25osk")
+surface_material_override/0 = ExtResource("3_edty1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=993257935]
+shape = SubResource("SphereShape3D_d60mj")
+
+[node name="Scaler" type="Marker3D" parent="." unique_id=1507145228]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scaler" unique_id=1051897378]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, 0.5, 0, -0.5, -2.1855694e-08, 0, 0, 0.5)
+mesh = SubResource("QuadMesh_edty1")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

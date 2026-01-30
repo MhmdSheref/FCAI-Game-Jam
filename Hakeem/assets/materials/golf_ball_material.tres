@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cqpqqba33xhj5"]
+
+[ext_resource type="Texture2D" uid="uid://d7a1xs3m321r" path="res://Hakeem/assets/textures/golf_normal_map.jpg" id="1_yatk8"]
+
+[resource]
+normal_enabled = true
+normal_texture = ExtResource("1_yatk8")
