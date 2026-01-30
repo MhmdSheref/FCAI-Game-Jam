@@ -1,0 +1,54 @@
+[gd_scene format=4 uid="uid://bymky0a22pxgj"]
+
+[ext_resource type="Texture2D" uid="uid://b4ryhbyh4q0vq" path="res://Assets/kennyGolf/Textures/colormap.png" id="1_dt2fo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ul61n"]
+resource_name = "colormap"
+cull_mode = 2
+albedo_texture = ExtResource("1_dt2fo")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rl3hy"]
+_surfaces = [{
+"aabb": AABB(-0.49995, 0, -3.609557e-16, 0.9999, 0.146652, 1e-05),
+"format": 34359742465,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAACAAMAAwAEAAAABQAAAAQABAAGAAUABgAHAAUA"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("j8fMPpaxgT2pE9Alj8fMPvErFj6pE9Alcvn/PvErFj6pE9Alcvn/PgAAAACpE9Alcvn/vgAAAACpE9Clj8fMvpaxgT2pE9Clcvn/vvErFj6pE9Clj8fMvvErFj6pE9Cl")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vuwjb"]
+resource_name = "spline-default-cap-back_spline-default-cap-back"
+_surfaces = [{
+"aabb": AABB(-0.49995, 0, -3.609557e-16, 0.9999, 0.146652, 1e-05),
+"attribute_data": PackedByteArray("AAA4P6x9Yz8AADg/ZmZGPwAAOD9mZkY/AAA4P5qZeT8AADg/mpl5PwAAOD+sfWM/AAA4P2ZmRj8AADg/ZmZGPw=="),
+"format": 34359742487,
+"index_count": 18,
+"index_data": PackedByteArray("AAABAAIAAAACAAMAAwAEAAAABQAAAAQABAAGAAUABgAHAAUA"),
+"material": SubResource("StandardMaterial3D_ul61n"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("j8fMPpaxgT2pE9Alj8fMPvErFj6pE9Alcvn/PvErFj6pE9Alcvn/PgAAAACpE9Alcvn/vgAAAACpE9Clj8fMvpaxgT2pE9Clcvn/vvErFj6pE9Clj8fMvvErFj6pE9Cl/3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////v/9//3////+//3//f////7//f/9/////vw==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_rl3hy")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_uqhd0"]
+data = PackedVector3Array(0.39999998, 0.0633, 0, 0.39999998, 0.1467, 0, 0.5, 0.1467, 0, 0.39999998, 0.0633, 0, 0.5, 0.1467, 0, 0.5, 0, 0, 0.5, 0, 0, -0.5, 0, 0, 0.39999998, 0.0633, 0, -0.39999998, 0.0633, 0, 0.39999998, 0.0633, 0, -0.5, 0, 0, -0.5, 0, 0, -0.5, 0.1467, 0, -0.39999998, 0.0633, 0, -0.5, 0.1467, 0, -0.39999998, 0.1467, 0, -0.39999998, 0.0633, 0)
+
+[node name="spline-default-cap-back2" type="Node3D" unique_id=2013307457]
+
+[node name="spline-default-cap-back" type="MeshInstance3D" parent="." unique_id=1587022430]
+mesh = SubResource("ArrayMesh_vuwjb")
+
+[node name="spline-default-cap-back_col" type="StaticBody3D" parent="spline-default-cap-back" unique_id=20435945]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="spline-default-cap-back/spline-default-cap-back_col" unique_id=847569139]
+shape = SubResource("ConcavePolygonShape3D_uqhd0")

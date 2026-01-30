@@ -1,0 +1,54 @@
+[gd_scene format=4 uid="uid://bke48kdim6x5j"]
+
+[ext_resource type="Texture2D" uid="uid://b4ryhbyh4q0vq" path="res://Assets/kennyGolf/Textures/colormap.png" id="1_5dbd5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oym38"]
+resource_name = "colormap"
+cull_mode = 2
+albedo_texture = ExtResource("1_5dbd5")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pwgfm"]
+_surfaces = [{
+"aabb": AABB(-0.49995, 0, -0.49995, 0.9999, 0.646652, 0.9999),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAQAAAAMAAgAEAAAAAwAFAAEABgACAAEAAQAFAAYABgAHAAIAAgAHAAgACAAEAAIACAAHAAYABAAIAAkAAAAEAAkABgAJAAgACQAKAAAACgAJAAYAAwAAAAoACwAGAAUABgALAAoABQADAAwACgAMAAMABQANAAsADAANAAUADQAOAAsADgANAAwACgALAA4ADAAPAA4ADgAPAAoACgAPAAwA"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AADwxf//AAAAAAAAAAAAAAAADjoAAAAA///wxf//AAAAAP////8AAP//AAAAAAAAmRkRGQAAAACZGQ46AAAAAJkZ/////wAAmRkC3///AABl5gLf//8AAGXmERkAAAAA////////AAD//w46AAAAAGXmDjoAAAAAZeb/////AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_k3gsg"]
+resource_name = "ramp-high_ramp-high"
+_surfaces = [{
+"aabb": AABB(-0.49995, 0, -0.49995, 0.9999, 0.646652, 0.9999),
+"attribute_data": PackedByteArray("/7cC0v+3mPn/t/zt/7dlxv+3/O3/t/zt/7dlxv+3Zcb/t5X0/7f87f+3/O3/t5j5/7eY+f+3lfT/t/zt/7f87f+3/O3/t/zt/7dlxv+3Zcb/t2XG/7f87f+3lfT/t/7M/7cC0v+3mPn/t5j5/7cC0v+3/sz/t2XG/7dlxv+3AtL/twLS/7f+zP+3Zcb/t2XG/7f+zP+3lfT/t/zt/7dlxv+3Zcb/t/zt/7eY+f+3AtL/J/+f/yf/n/8n/5//J/+f"),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACAAKAAsACwAMAAgADQAIAAwADAAOAA0ADgAPAA0AEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGgAbABgAHAAdAB4AHAAeAB8AHwAgABwAIQAcACAAIAAiACEAIgAjACEAJAAlACYAJgAnACQAKAApACoAKgArACgALAAtAC4ALgAvACwA"),
+"material": SubResource("StandardMaterial3D_oym38"),
+"name": "colormap",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AADwxf///78AAAAAAAD/vwAADjoAAP+/AAD//////78AAA46AAD//5kZDjoAAP//mRn///////8AAP///////5kZERkAAP//mRkOOgAA//8AAA46AAD//wAAAAAAAP////8AAAAA//9l5hEZAAD/////DjoAAP//ZeYOOgAA//9l5g46AAD/////DjoAAP////////////9l5v///////5kZ//////+/mRkOOgAA/7+ZGREZAAD/v5kZAt////+////wxf//Gq3//wAAAAAarQAAAAAAABqtAADwxf//Gq1l5gLf//8AgGXm/////wCA////////AID///DF//8AgAAA8MX//wCAmRkC3///AIAAAP////8AgJkZ/////wCAZeYC3////79l5hEZAAD/v2XmDjoAAP+/Zeb//////7//////////v///DjoAAP+///8AAAAA/7////DF////v5kZERkAAP//ZeYRGQAA//9l5gLf/////5kZAt///////3////9/////f////3////9/G8//fxvP/38bz/9/G8//f////3////9/////f////3////9/////f////3////9/G8//fxvP/38bz/9/G8//fwAA/38AAP9/AAD/fwAAAAD/fwAA/38AAP9/AAD/f/9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/AAD/fwAA/38AAP9/AAD/fxvP/38bz/9/G8//fxvP")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_pwgfm")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ngsm3"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, -0.5, 0, -0.5, -0.5, 0.1466, -0.5, -0.5, 0.1466, -0.5, -0.5, 0.64669997, 0.5, -0.5, 0.5, 0.5, -0.5, 0.1466, -0.5, -0.39999998, 0.1466, -0.5, -0.39999998, 0.64669997, 0.5, -0.39999998, 0.64669997, 0.5, -0.5, 0.64669997, 0.5, -0.5, 0.1466, -0.5, -0.39999998, 0.0633, -0.5, -0.39999998, 0.1466, -0.5, -0.5, 0.1466, -0.5, -0.39999998, 0.0633, -0.5, -0.5, 0.1466, -0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0.1466, -0.5, 0.39999998, 0.0633, -0.5, 0.5, 0.1466, -0.5, 0.39999998, 0.1466, -0.5, 0.39999998, 0.0633, -0.5, 0.39999998, 0.1466, -0.5, 0.5, 0.1466, -0.5, 0.5, 0.64669997, 0.5, 0.5, 0.64669997, 0.5, 0.39999998, 0.64669997, 0.5, 0.39999998, 0.1466, -0.5, -0.39999998, 0.64669997, 0.5, -0.39999998, 0.1466, -0.5, -0.39999998, 0.0633, -0.5, -0.39999998, 0.0633, -0.5, -0.39999998, 0.5633, 0.5, -0.39999998, 0.64669997, 0.5, 0.5, 0.5, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.39999998, 0.5633, 0.5, 0.39999998, 0.64669997, 0.5, 0.5, 0.64669997, 0.5, 0.39999998, 0.5633, 0.5, 0.5, 0.64669997, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.39999998, 0.5633, 0.5, -0.39999998, 0.5633, 0.5, 0.39999998, 0.5633, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.64669997, 0.5, -0.39999998, 0.5633, 0.5, -0.5, 0.64669997, 0.5, -0.39999998, 0.64669997, 0.5, -0.39999998, 0.5633, 0.5, 0.39999998, 0.5633, 0.5, 0.39999998, 0.0633, -0.5, 0.39999998, 0.1466, -0.5, 0.39999998, 0.1466, -0.5, 0.39999998, 0.64669997, 0.5, 0.39999998, 0.5633, 0.5, 0.5, 0.64669997, 0.5, 0.5, 0.1466, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0.5, 0.5, 0.5, 0.64669997, 0.5, -0.39999998, 0.0633, -0.5, 0.39999998, 0.0633, -0.5, 0.39999998, 0.5633, 0.5, 0.39999998, 0.5633, 0.5, -0.39999998, 0.5633, 0.5, -0.39999998, 0.0633, -0.5)
+
+[node name="ramp-high2" type="Node3D" unique_id=1791644239]
+
+[node name="ramp-high" type="MeshInstance3D" parent="." unique_id=1200962540]
+mesh = SubResource("ArrayMesh_k3gsg")
+
+[node name="ramp-high_col" type="StaticBody3D" parent="ramp-high" unique_id=1791419738]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ramp-high/ramp-high_col" unique_id=850492770]
+shape = SubResource("ConcavePolygonShape3D_ngsm3")

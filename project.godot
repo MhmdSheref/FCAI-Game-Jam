@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="FCAI Game Jam"
+run/main_scene="uid://dcjst7egcek71"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/physics_collision_import_generator/plugin.cfg")
 
 [physics]
 
