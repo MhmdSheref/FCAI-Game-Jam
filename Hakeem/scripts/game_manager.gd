@@ -15,3 +15,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_hole_ball_entered() -> void:
 	pass
+	
+	

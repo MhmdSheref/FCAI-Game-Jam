@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://dlxiis7mxjxjp" path="res://Hakeem/scripts/golf_ball.gd" id="1_ij5cq"]
 [ext_resource type="Material" uid="uid://cqpqqba33xhj5" path="res://Hakeem/assets/materials/golf_ball_material.tres" id="3_edty1"]
 [ext_resource type="Script" uid="uid://bj7mvhb5ctrks" path="res://Hakeem/scripts/camera_pivot.gd" id="3_tw82i"]
+[ext_resource type="Shader" uid="uid://b78tpi50pgmbs" path="res://GPUTrail-main/shaders/trail.gdshader" id="5_ggg6b"]
+[ext_resource type="Shader" uid="uid://b45cdw6kngdi7" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_bth5r"]
+[ext_resource type="Script" uid="uid://bjbp3hkyndjos" path="res://GPUTrail-main/GPUTrail3D.gd" id="7_ng0vs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edty1"]
 friction = 0.4
@@ -18,6 +21,37 @@ height = 0.2
 radius = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_edty1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1350y"]
+shader = ExtResource("5_ggg6b")
+
+[sub_resource type="Gradient" id="Gradient_27drp"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f0l7x"]
+gradient = SubResource("Gradient_27drp")
+
+[sub_resource type="Curve" id="Curve_0eens"]
+bake_resolution = 16
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ttn2q"]
+curve = SubResource("Curve_0eens")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_02lvv"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("6_bth5r")
+shader_parameter/mask_strength = 1.0
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_f0l7x")
+shader_parameter/curve = SubResource("CurveTexture_ttn2q")
+shader_parameter/emmission_transform = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/flags = 40
+
+[sub_resource type="QuadMesh" id="QuadMesh_feme4"]
+material = SubResource("ShaderMaterial_02lvv")
 
 [node name="Ball" type="RigidBody3D" unique_id=411611324]
 physics_material_override = SubResource("PhysicsMaterial_edty1")
@@ -45,5 +79,20 @@ script = ExtResource("3_tw82i")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 script = ExtResource("1_d60mj")
+
+[node name="GPUTrail3D" type="GPUParticles3D" parent="camera_pivot" unique_id=1750488859]
+transform = Transform3D(-2.1855695e-09, 0.05, 0, -0.05, -2.1855695e-09, 0, 0, 0, 0.05, 0, 0.013407037, 0)
+amount = 100
+lifetime = 100.0
+explosiveness = 1.0
+fixed_fps = 144
+process_material = SubResource("ShaderMaterial_1350y")
+draw_pass_1 = SubResource("QuadMesh_feme4")
+script = ExtResource("7_ng0vs")
+length_seconds = 0.6944444444444444
+color_ramp = SubResource("GradientTexture1D_f0l7x")
+curve = SubResource("CurveTexture_ttn2q")
+_defaults_have_been_set = true
+metadata/_custom_type_script = "uid://bjbp3hkyndjos"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
