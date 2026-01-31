@@ -12,6 +12,7 @@ radius = 1.0
 
 [node name="Ghost" type="StaticBody3D" unique_id=739776961]
 script = ExtResource("1_o7pak")
+infinite_effect = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1352648445]
 shape = SubResource("BoxShape3D_5jwke")

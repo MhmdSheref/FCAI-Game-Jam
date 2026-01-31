@@ -11,10 +11,11 @@ var velocity : Vector3
 var speed : Vector3
 var distance : float
 var direction :Vector3
+
 var is_shot : bool
 var shoot_start_time : int
 #timer to make the ball shootable again regardless of speed
-@export var shoot_cooldown_ms := 5000
+@export var shoot_cooldown := 5.0
 #this timer exists so that the speed check doesn't happen immediately after the ball is shot
 var speed_check_cooldown := 1000 
 var can_check_speed := true
@@ -54,7 +55,6 @@ func _process(delta) -> void:
 	
 	#make the ball shootable if it's not moving only after a while of being shot
 	if can_check_speed && !is_moving():
-		print("reset by speed check")
 		is_shot = false
 	
 #Shooting the golf ball.
@@ -91,7 +91,7 @@ func cooldowns():
 	var current_time = Time.get_ticks_msec()
 	var delta_shot = current_time - shoot_start_time
 	
-	if delta_shot >= shoot_cooldown_ms && is_shot:
+	if delta_shot >= shoot_cooldown*1000 && is_shot: #(*1000) converts from sec to ms 
 		print("cooldown reset")
 		is_shot = false
 	if delta_shot >= speed_check_cooldown && !can_check_speed:
