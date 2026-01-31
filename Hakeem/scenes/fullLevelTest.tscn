@@ -1,15 +1,17 @@
-[gd_scene format=3 uid="uid://c1p43wqsnau7y"]
+[gd_scene format=3 uid="uid://f4agmu5ymqd7"]
 
 [ext_resource type="Script" uid="uid://djmxsanm0oebl" path="res://Hakeem/scripts/game_manager.gd" id="1_c6iih"]
 [ext_resource type="MeshLibrary" uid="uid://dyooyv1tv6vsc" path="res://Assets/golfFr.meshlib" id="1_n2hv7"]
-[ext_resource type="PackedScene" uid="uid://ci5djhf2onhk2" path="res://Hakeem/scenes/Hole.tscn" id="2_44nap"]
+[ext_resource type="PackedScene" path="res://Hakeem/scenes/Hole.tscn" id="2_44nap"]
 [ext_resource type="PackedScene" uid="uid://brvr0b3yd08hg" path="res://Hakeem/scenes/ball.tscn" id="2_q1rpn"]
 [ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="4_34eyx"]
 [ext_resource type="Script" uid="uid://w35rocmctxqt" path="res://Sheref/Scenes/raycast_place.gd" id="5_44nap"]
 [ext_resource type="PackedScene" uid="uid://3f623cw042ui" path="res://Hakeem/scenes/ghost.tscn" id="7_tvvy6"]
-[ext_resource type="Script" uid="uid://craekggkqk7qc" path="res://Hakeem/scripts/state_machine.gd" id="8_yiy72"]
-[ext_resource type="Script" uid="uid://dtgvrovjwxvaj" path="res://Hakeem/scripts/ball_camera_state.gd" id="9_vjrdy"]
+[ext_resource type="Script" path="res://Hakeem/scripts/state_machine.gd" id="8_yiy72"]
+[ext_resource type="Script" path="res://Hakeem/scripts/ball_camera_state.gd" id="9_vjrdy"]
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_tvvy6"]
+[ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_q8v5n"]
+[ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_ah40i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q1rpn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -74,6 +76,16 @@ script = ExtResource("9_vjrdy")
 
 [node name="free_camera_state" type="Node" parent="GameManager/StateMachine" unique_id=1454004940]
 script = ExtResource("10_tvvy6")
+
+[node name="ui" type="Node" parent="GameManager" unique_id=1845031449]
+
+[node name="ghost_selector" parent="GameManager/ui" unique_id=992232534 instance=ExtResource("11_q8v5n")]
+visible = false
+offset_top = -181.0
+offset_bottom = 8.0
+
+[node name="ghost_tooltip" parent="GameManager/ui" unique_id=640808707 instance=ExtResource("12_ah40i")]
+visible = false
 
 [connection signal="ball_entered" from="GameManager/Hole" to="GameManager" method="_on_hole_ball_entered"]
 

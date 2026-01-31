@@ -1,16 +1,7 @@
 [gd_scene format=3 uid="uid://bnwtvfpn55ysb"]
 
-[node name="ghost_tooltip" type="Control" unique_id=640808707]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="." unique_id=1128294455]
+[node name="Panel" type="Panel" unique_id=72983572]
 custom_minimum_size = Vector2(200, 200)
-layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -23,7 +14,7 @@ offset_bottom = 100.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1485361783]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=395749425]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,27 +22,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Panel/VBoxContainer" unique_id=1550910642]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1430366338]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/PanelContainer" unique_id=1780114978]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer" unique_id=1631468621]
 layout_mode = 2
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer/PanelContainer/MarginContainer" unique_id=1593804956]
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer" unique_id=1473192694]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
 text = "Ghost Type"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer" unique_id=569564939]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=514884999]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Panel/VBoxContainer/MarginContainer" unique_id=2047497361]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer" unique_id=773216604]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 16
 text = "This is text describing the ghost and what it does"
