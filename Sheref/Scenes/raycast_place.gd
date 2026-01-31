@@ -34,6 +34,7 @@ func _process(_delta: float) -> void:
 func place_building():
 	if ghost_instance:
 		# Turn it into a real building
-		ghost_instance.set_as_ghost(false)
+		if ghost_instance.has_method("set_as_ghost"):
+			ghost_instance.set_as_ghost(false)
 		# Clear the reference so the next frame spawns a new ghost
 		ghost_instance = null

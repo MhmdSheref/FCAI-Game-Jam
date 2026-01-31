@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="1_dqbdu"]
 [ext_resource type="Script" path="res://Sheref/Scenes/raycast_place.gd" id="2_wseku"]
-[ext_resource type="PackedScene" uid="uid://bl1pfd77ayust" path="res://Sheref/Scenes/box.tscn" id="3_ab7ll"]
+[ext_resource type="PackedScene" uid="uid://3f623cw042ui" path="res://Hakeem/scenes/ghost.tscn" id="3_ab7ll"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ab7ll"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

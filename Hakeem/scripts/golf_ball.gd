@@ -1,3 +1,4 @@
+class_name GolfBall
 extends RigidBody3D
 
 @export var max_speed : int = 8
@@ -51,7 +52,7 @@ func _process(delta) -> void:
 	cooldowns()
 	scaler_follow()
 	
-	pull_metter()
+	pull_meter()
 	
 	#make the ball shootable if it's not moving only after a while of being shot
 	if can_check_speed && !is_moving():
@@ -67,7 +68,7 @@ func shoot(vector:Vector3)->void:
 func scaler_follow() -> void:
 	scaler.transform.origin = scaler.transform.origin.lerp(self.transform.origin,.8)
 	
-func pull_metter() -> void:
+func pull_meter() -> void:
 	#Calling the raycast from the camera node.
 	var ray_cast = camera_3d.camera_raycast()
 	
