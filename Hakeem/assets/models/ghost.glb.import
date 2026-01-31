@@ -37,6 +37,14 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Material.002": {
+"use_external/enabled": false,
+"use_external/fallback_path": "res://Sheref/Materials/ghost_hat_push.tres",
+"use_external/path": "uid://swkf68jmws04"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

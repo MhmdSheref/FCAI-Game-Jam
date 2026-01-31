@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://lflf1mx6vwgp"]
+
+[ext_resource type="Script" uid="uid://itrf3fc001aj" path="res://Hakeem/scripts/ghost.gd" id="1_628n2"]
+[ext_resource type="PackedScene" uid="uid://5cf66lw6mb2s" path="res://Hakeem/assets/models/ghost.glb" id="3_nnlfp"]
+[ext_resource type="Script" path="res://Hakeem/scripts/ghost_area.gd" id="4_sim8k"]
+[ext_resource type="Material" uid="uid://swkf68jmws04" path="res://Sheref/Materials/ghost_hat_push.tres" id="4_u8no4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jwke"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5jwke"]
+radius = 1.0
+
+[node name="Ghost" type="StaticBody3D" unique_id=739776961]
+script = ExtResource("1_628n2")
+infinite_effect = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1352648445]
+shape = SubResource("BoxShape3D_5jwke")
+disabled = true
+
+[node name="Area3D" type="Area3D" parent="." unique_id=607854951]
+input_ray_pickable = false
+script = ExtResource("4_sim8k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2120249956]
+shape = SubResource("SphereShape3D_5jwke")
+
+[node name="ghost" parent="." unique_id=1440692926 instance=ExtResource("3_nnlfp")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+
+[node name="Ghost" parent="ghost" index="0" unique_id=1124708904]
+surface_material_override/4 = ExtResource("4_u8no4")
+
+[editable path="ghost"]

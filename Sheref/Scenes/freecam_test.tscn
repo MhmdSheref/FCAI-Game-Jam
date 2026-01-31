@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://diwy4d4eq626d"]
 
 [ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="1_dqbdu"]
-[ext_resource type="Script" path="res://Sheref/Scenes/raycast_place.gd" id="2_wseku"]
-[ext_resource type="PackedScene" uid="uid://3f623cw042ui" path="res://Hakeem/scenes/ghost.tscn" id="3_ab7ll"]
+[ext_resource type="Script" uid="uid://w35rocmctxqt" path="res://Sheref/Scenes/raycast_place.gd" id="2_wseku"]
+[ext_resource type="PackedScene" uid="uid://ckbn4b2c4yd0g" path="res://Hakeem/scenes/ghost.tscn" id="3_ab7ll"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ab7ll"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -33,7 +33,6 @@ metadata/_custom_type_script = "uid://8vyuhyx0xogt"
 
 [node name="RayCast3D" type="RayCast3D" parent="Freecam3D" unique_id=2138278058]
 target_position = Vector3(0, 0, -30)
-collide_with_areas = true
 script = ExtResource("2_wseku")
 building_scene = ExtResource("3_ab7ll")
 
