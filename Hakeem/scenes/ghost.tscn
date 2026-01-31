@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://itrf3fc001aj" path="res://Hakeem/scripts/ghost.gd" id="1_o7pak"]
 [ext_resource type="Script" uid="uid://4eagk3qi83da" path="res://Hakeem/scripts/ghost_area.gd" id="1_xxqgd"]
+[ext_resource type="Script" uid="uid://bvtjpmgterjnw" path="res://Hakeem/scripts/float.gd" id="2_8vw3u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5jwke"]
 
@@ -20,6 +21,7 @@ disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=164696372]
 mesh = SubResource("BoxMesh_xxqgd")
+script = ExtResource("2_8vw3u")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=607854951]
 script = ExtResource("1_xxqgd")
