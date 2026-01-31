@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://c7nmls8tf4a5q" path="res://Hakeem/scripts/hole.gd" id="1_erigt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o1rr5"]
-height = 0.5
+height = 0.1
+radius = 0.1
 
 [node name="Hole" type="Area3D" unique_id=36256616]
+input_ray_pickable = false
 script = ExtResource("1_erigt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2140770143]

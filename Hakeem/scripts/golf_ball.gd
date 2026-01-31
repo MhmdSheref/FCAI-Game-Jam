@@ -78,7 +78,9 @@ func pull_meter() -> void:
 		#Calculating the direction vector between golf ball ,and mouse position.
 		direction = self.transform.origin.direction_to(ray_cast.position)
 		#Looking at the mouse position in the 3D world.
-		scaler.look_at(Vector3(ray_cast.position.x,position.y,ray_cast.position.z))
+		var target = Vector3(ray_cast.position.x,position.y,ray_cast.position.z)
+		if not scaler.global_position.is_equal_approx(target):
+			scaler.look_at(target)
 		
 		if selected:
 			#Scaling the scaler with limitation.
