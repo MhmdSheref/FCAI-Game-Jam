@@ -6,7 +6,6 @@ extends RigidBody3D
 @onready var scaler : Marker3D = $Scaler
 @onready var camera_3d: Camera3D = $camera_pivot/Camera3D
 
-
 var selected : bool = false
 var velocity : Vector3
 var speed : Vector3
@@ -14,7 +13,11 @@ var distance : float
 var direction :Vector3
 var is_shot : bool
 var shoot_start_time : int
-@export var shoot_cooldown_ms : int = 5000
+#timer to make the ball shootable again regardless of speed
+@export var shoot_cooldown_ms := 5000
+#this timer exists so that the speed check doesn't happen immediately after the ball is shot
+var speed_check_cooldown := 1000 
+var can_check_speed := true
 
 func _ready() -> void:
 	#We set the scaler as top level to ignore parent's transformations.
@@ -39,17 +42,20 @@ func _input(event) -> void:
 			
 			shoot_start_time = Time.get_ticks_msec()
 			is_shot = true
+			can_check_speed = false
 			
 		selected = false
 
 func _process(delta) -> void:
-	#Function to follow the golf ball.
-	if !is_moving():
-		is_shot = false
 	cooldowns()
 	scaler_follow()
 	
 	pull_metter()
+	
+	#make the ball shootable if it's not moving only after a while of being shot
+	if can_check_speed && !is_moving():
+		print("reset by speed check")
+		is_shot = false
 	
 #Shooting the golf ball.
 func shoot(vector:Vector3)->void:
@@ -86,7 +92,11 @@ func cooldowns():
 	var delta_shot = current_time - shoot_start_time
 	
 	if delta_shot >= shoot_cooldown_ms && is_shot:
+		print("cooldown reset")
 		is_shot = false
+	if delta_shot >= speed_check_cooldown && !can_check_speed:
+		print("can check speed")
+		can_check_speed = true
 		
 func is_moving():
 	return linear_velocity.length() > 0.2
