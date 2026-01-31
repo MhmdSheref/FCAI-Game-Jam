@@ -15,7 +15,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent):
 	if event is InputEventMouseMotion:
-		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		#apply yaw and pitch changes if right mouse button is pressed
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT): 
 			yaw -= event.relative.x * sensitivity
 			pitch -= event.relative.y * sensitivity
 			pitch = clamp(pitch, -1.2, -0.1)
@@ -23,10 +24,8 @@ func _input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			zoom(zoom_speed)
-			print("zoom up")
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			zoom(-zoom_speed)
-			print("zoom down")
 
 func _process(delta: float):
 	global_position = golf_ball.global_position

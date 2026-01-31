@@ -92,10 +92,10 @@ func cooldowns():
 	var delta_shot = current_time - shoot_start_time
 	
 	if delta_shot >= shoot_cooldown*1000 && is_shot: #(*1000) converts from sec to ms 
-		print("cooldown reset")
+		print("ball shoot cooldown reset")
 		is_shot = false
 	if delta_shot >= speed_check_cooldown && !can_check_speed:
-		print("can check speed")
+		print("ball can check speed")
 		can_check_speed = true
 		
 func is_moving():
