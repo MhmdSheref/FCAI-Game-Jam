@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://5cf66lw6mb2s" path="res://Hakeem/assets/models/ghost.glb" id="2_model"]
 [ext_resource type="Script" uid="uid://bvtjpmgterjnw" path="res://Hakeem/scripts/float.gd" id="3_float"]
 [ext_resource type="Script" uid="uid://4eagk3qi83da" path="res://Hakeem/scripts/ghost_area.gd" id="4_area"]
+[ext_resource type="PackedScene" uid="uid://pfod3vrdysw6" path="res://Hakeem/scenes/hit_vfx.tscn" id="6_hitvfx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_slow"]
 
@@ -39,5 +40,7 @@ script = ExtResource("4_area")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_slow")
+
+[node name="hit_vfx" parent="Area3D" instance=ExtResource("6_hitvfx")]
 
 [editable path="ghost"]

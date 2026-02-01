@@ -18,16 +18,14 @@ func apply_forces():
 					affected_bodies.append(body)
 				ghost.affect_body(body)
 				print(str(ghost) + " applied force of type " + str(ghost.force_type))
-<<<<<<< Updated upstream
-				animation_player.pl
-=======
+				if animation_player:
+					animation_player.play("hit_animation")
 				
 				# Play ghost sound for push/pull (bounce/slow handle their own sounds)
 				if ghost.force_type == Ghost.ForceType.Push or ghost.force_type == Ghost.ForceType.Pull:
 					if AudioManager:
 						AudioManager.play_ghost()
 				
->>>>>>> Stashed changes
 				effect_start_time = Time.get_ticks_msec()
 				can_affect = false
 	
