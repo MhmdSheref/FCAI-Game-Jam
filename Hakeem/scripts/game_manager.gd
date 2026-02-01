@@ -19,9 +19,15 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	state_machine.physics_process(delta)
 
+#win condition
 func _on_hole_ball_entered() -> void:
-	pass
+	print("win")
 
 func _on_ghost_selector_changed_ghost_selection(button) -> void:
 	ray_cast.ghost_instance = null #clear ghost instance to immediately switch to the new ghost type
 	ray_cast.building_scene = ghost_scenes[button]
+	
+#lose condition
+func _on_killzone_death() -> void:
+	print("ded")
+	get_tree().reload_current_scene()
