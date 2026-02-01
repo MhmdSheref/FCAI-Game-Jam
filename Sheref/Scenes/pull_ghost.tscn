@@ -11,9 +11,20 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_5jwke"]
 radius = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rxq7"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.09803922)
+
+[sub_resource type="SphereMesh" id="SphereMesh_jq5cm"]
+material = SubResource("StandardMaterial3D_4rxq7")
+radius = 1.0
+height = 2.0
+
 [node name="Ghost2" type="StaticBody3D" unique_id=739776961]
+collision_layer = 4
 script = ExtResource("1_1h2k0")
 force_type = 1
+lateral_effect = false
 infinite_effect = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1352648445]
@@ -24,7 +35,7 @@ disabled = true
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 script = ExtResource("3_jq5cm")
 
-[node name="Ghost" parent="ghost" index="0" unique_id=1124708904]
+[node name="Ghost" parent="ghost" index="0" unique_id=354178060]
 surface_material_override/4 = ExtResource("3_1h2k0")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=607854951]
@@ -33,5 +44,8 @@ script = ExtResource("4_235f5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2120249956]
 shape = SubResource("SphereShape3D_5jwke")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1449313876]
+mesh = SubResource("SphereMesh_jq5cm")
 
 [editable path="ghost"]

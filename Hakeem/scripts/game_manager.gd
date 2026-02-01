@@ -35,3 +35,5 @@ func _on_ghost_selector_changed_ghost_selection(button) -> void:
 func _on_killzone_death() -> void:
 	print("ded")
 	get_tree().reload_current_scene()
+	ray_cast.clear_ghosts()
+	state_machine.on_child_transition(state_machine.current_state, "ball_cam_state")

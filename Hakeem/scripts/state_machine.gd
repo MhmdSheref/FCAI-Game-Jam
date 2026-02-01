@@ -36,6 +36,7 @@ func cooldowns():
 		can_change_state = true
 
 func on_child_transition(state: State, new_state_name: String):
+	print("a")
 	if can_change_state:
 		if state != current_state:
 			return

@@ -2,10 +2,12 @@ extends RayCast3D
 
 @export var building_scene: PackedScene
 @onready var freecam_3d: Freecam3D = %Freecam3D
+@onready var ball: GolfBall = $"../../Ball"
 
 @export var grid_size: float = 1.0
 
 var ghost_instance: Node3D
+var ghost_list: Array[Node3D]
 
 func _process(_delta: float) -> void:
 	if is_colliding() && freecam_3d.movement_active:
@@ -36,8 +38,19 @@ func _process(_delta: float) -> void:
 func place_building():
 	if freecam_3d.movement_active:
 		if ghost_instance:
-			# Turn it into a real building
-			if ghost_instance.has_method("set_as_ghost"):
-				ghost_instance.set_as_ghost(false)
-			# Clear the reference so the next frame spawns a new ghost
-			ghost_instance = null
+			var ghost_distance_from_ball = ghost_instance.global_position - ball.global_position
+			if ghost_distance_from_ball.length() >= 4.0:
+				# Turn it into a real building
+				if ghost_instance.has_method("set_as_ghost"):
+					ghost_instance.set_as_ghost(false)
+				ghost_list.append(ghost_instance)
+				# Clear the reference so the next frame spawns a new ghost
+				ghost_instance = null
+			else:
+				print("ghost too close to ball")
+			
+func clear_ghosts():
+	for ghost in ghost_list:
+		ghost.queue_free()
+	if ghost_instance:
+		ghost_instance.queue_free()
