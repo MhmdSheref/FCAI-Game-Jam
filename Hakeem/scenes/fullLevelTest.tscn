@@ -93,3 +93,4 @@ visible = false
 
 [editable path="GameManager/Hole"]
 [editable path="GameManager/Ball"]
+[editable path="GameManager/Ball/hit_vfx"]

@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://pfod3vrdysw6"]
+
+[ext_resource type="Shader" uid="uid://cexx0xh0b2sg7" path="res://Hakeem/assets/shaders/ball_hit.tres" id="1_1osrp"]
+[ext_resource type="Texture2D" uid="uid://dj31q1kmrsbal" path="res://Hakeem/assets/textures/T_flare12.png" id="2_xp0cc"]
+[ext_resource type="Shader" uid="uid://c2egq3g6s05jb" path="res://Hakeem/assets/shaders/ball_particles.tres" id="3_qqhgp"]
+[ext_resource type="Texture2D" uid="uid://bigxtfbkyf72u" path="res://Hakeem/assets/textures/T_circle42.PNG" id="4_t53j8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggg6b"]
+render_priority = 0
+shader = ExtResource("1_1osrp")
+shader_parameter/Hit_texture = ExtResource("2_xp0cc")
+
+[sub_resource type="Curve" id="Curve_1350y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_27drp"]
+curve = SubResource("Curve_1350y")
+
+[sub_resource type="Curve" id="Curve_ng0vs"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1350y"]
+curve = SubResource("Curve_ng0vs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ggg6b"]
+lifetime_randomness = 0.2
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_1350y")
+alpha_curve = SubResource("CurveTexture_27drp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bth5r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ng0vs"]
+render_priority = 0
+shader = ExtResource("3_qqhgp")
+shader_parameter/Hit_texture = ExtResource("4_t53j8")
+
+[sub_resource type="Curve" id="Curve_27drp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50214595, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_f0l7x"]
+curve = SubResource("Curve_27drp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ng0vs"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 8.0
+initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+alpha_curve = SubResource("CurveTexture_f0l7x")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1350y"]
+size = Vector2(0.05, 0.4)
+
+[sub_resource type="Animation" id="Animation_1osrp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("impact:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_xp0cc"]
+resource_name = "hit_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("impact:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sparks:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qqhgp"]
+_data = {
+&"RESET": SubResource("Animation_1osrp"),
+&"hit_animation": SubResource("Animation_xp0cc")
+}
+
+[node name="hit_vfx" type="Node3D" unique_id=439240103]
+
+[node name="impact" type="GPUParticles3D" parent="." unique_id=1969772629]
+material_override = SubResource("ShaderMaterial_ggg6b")
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ggg6b")
+draw_pass_1 = SubResource("QuadMesh_bth5r")
+
+[node name="sparks" type="GPUParticles3D" parent="." unique_id=352443498]
+material_override = SubResource("ShaderMaterial_ng0vs")
+emitting = false
+amount = 15
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ng0vs")
+draw_pass_1 = SubResource("QuadMesh_1350y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1240173251]
+libraries/ = SubResource("AnimationLibrary_qqhgp")

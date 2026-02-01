@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://b78tpi50pgmbs" path="res://GPUTrail-main/shaders/trail.gdshader" id="5_ggg6b"]
 [ext_resource type="Shader" uid="uid://b45cdw6kngdi7" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_bth5r"]
 [ext_resource type="Script" uid="uid://bjbp3hkyndjos" path="res://GPUTrail-main/GPUTrail3D.gd" id="7_ng0vs"]
+[ext_resource type="PackedScene" uid="uid://pfod3vrdysw6" path="res://Hakeem/scenes/hit_vfx.tscn" id="8_bth5r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edty1"]
 friction = 0.4
@@ -95,4 +96,8 @@ curve = SubResource("CurveTexture_ttn2q")
 _defaults_have_been_set = true
 metadata/_custom_type_script = "uid://bjbp3hkyndjos"
 
+[node name="hit_vfx" parent="." unique_id=439240103 instance=ExtResource("8_bth5r")]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+
+[editable path="hit_vfx"]

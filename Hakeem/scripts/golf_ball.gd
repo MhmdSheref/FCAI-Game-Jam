@@ -6,6 +6,8 @@ extends RigidBody3D
 
 @onready var scaler : Marker3D = $Scaler
 @onready var camera_3d: Camera3D = $camera_pivot/Camera3D
+@onready var hit_animation_player: AnimationPlayer = $hit_vfx/AnimationPlayer
+
 
 var selected : bool = false
 var velocity : Vector3
@@ -20,6 +22,8 @@ var shoot_start_time : int
 #this timer exists so that the speed check doesn't happen immediately after the ball is shot
 var speed_check_cooldown := 1000 
 var can_check_speed := true
+
+signal just_shot
 
 func _ready() -> void:
 	#We set the scaler as top level to ignore parent's transformations.
@@ -41,6 +45,7 @@ func _input(event) -> void:
 			speed = - (direction * distance * accel).limit_length(max_speed)
 			
 			shoot(speed)
+			just_shot.emit()
 			
 			shoot_start_time = Time.get_ticks_msec()
 			is_shot = true
@@ -61,8 +66,11 @@ func _process(delta) -> void:
 #Shooting the golf ball.
 func shoot(vector:Vector3)->void:
 	velocity = Vector3(vector.x,0,vector.z)
-	
+	play_hit_particles()
 	self.apply_impulse(velocity, Vector3.ZERO)
+	
+func play_hit_particles():
+	hit_animation_player.play("hit_animation")
 	
 #Function to follow the golf ball.
 func scaler_follow() -> void:
