@@ -62,6 +62,58 @@ func _input(event) -> void:
 
 		selected = false
 
+<<<<<<< Updated upstream
+=======
+func _process(delta) -> void:
+	cooldowns()
+	scaler_follow()
+	
+	pull_meter()
+	
+	#make the ball shootable if it's not moving only after a while of being shot
+	if can_check_speed && !is_moving():
+		is_shot = false
+		shot_ended.emit()
+		
+	
+#Shooting the golf ball.
+func shoot(vector:Vector3)->void:
+	velocity = Vector3(vector.x,0,vector.z)
+	play_hit_particles()
+	self.apply_impulse(velocity, Vector3.ZERO)
+	# Play hit sound
+	if AudioManager:
+		AudioManager.play_hit()
+	
+func play_hit_particles():
+	hit_animation_player.play("hit_animation")
+	
+#Function to follow the golf ball.
+func scaler_follow() -> void:
+	scaler.transform.origin = scaler.transform.origin.lerp(self.transform.origin,.8)
+	
+func pull_meter() -> void:
+	#Calling the raycast from the camera node.
+	var ray_cast = camera_3d.camera_raycast()
+	
+	if not ray_cast.is_empty():
+		#Calculating the distance between the golf ball and the mouse position.
+		distance = self.position.distance_to(ray_cast.position)
+		#Calculating the direction vector between golf ball ,and mouse position.
+		direction = self.transform.origin.direction_to(ray_cast.position)
+		#Looking at the mouse position in the 3D world.
+		var target = Vector3(ray_cast.position.x,position.y,ray_cast.position.z)
+		if not scaler.global_position.is_equal_approx(target):
+			scaler.look_at(target)
+		
+		if selected:
+			#Scaling the scaler with limitation.
+			scaler.scale.z = clamp(distance,0,2)
+			
+		else:
+			#Resetting the scaler.
+			scaler.scale.z = 0.01
+>>>>>>> Stashed changes
 
 # -----------------------------
 # Main loop

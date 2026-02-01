@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://dgameuiscene"]
+
+[ext_resource type="Script" path="res://Scripts/game_ui.gd" id="1_gameui"]
+
+[node name="GameUI" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_gameui")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="ShotCounter" type="Label" parent="HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 28
+text = "Shots: 0"
+
+[node name="ParLabel" type="Label" parent="HUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Par: 5"
+
+[node name="WinPanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -180.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinPanel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="TitleLabel" type="Label" parent="WinPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 36
+text = "⛳ HOLE IN!"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="WinPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Great shot!"
+horizontal_alignment = 1
+
+[node name="ShotsLabel" type="Label" parent="WinPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Shots: 0"
+horizontal_alignment = 1
+
+[node name="NameInput" type="LineEdit" parent="WinPanel/VBoxContainer"]
+visible = false
+layout_mode = 2
+placeholder_text = "Enter your name..."
+alignment = 1
+max_length = 10
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="WinPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ContinueButton" type="Button" parent="WinPanel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Continue ▶"
+
+[node name="MenuButton" type="Button" parent="WinPanel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu 🏠"
+
+[node name="LosePanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -120.0
+offset_right = 180.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LosePanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="LosePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 36
+text = "💀 OUT OF BOUNDS!"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="LosePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Your ball fell into the void..."
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="LosePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RestartButton" type="Button" parent="LosePanel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🔄 Restart"
+
+[node name="MenuButton" type="Button" parent="LosePanel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🏠 Menu"
+
+[connection signal="pressed" from="WinPanel/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="WinPanel/VBoxContainer/ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="LosePanel/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="LosePanel/VBoxContainer/ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]

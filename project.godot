@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="FCAI Game Jam"
-run/main_scene="uid://diwy4d4eq626d"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameData="*res://Scripts/game_data.gd"
+AudioManager="*res://Scripts/audio_manager.gd"
 
 [editor_plugins]
 
