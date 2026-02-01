@@ -1,6 +1,7 @@
 extends Area3D
 
 @onready var ghost: Ghost = $".."
+@onready var animation_player: AnimationPlayer = $hit_vfx/AnimationPlayer
 
 var force_vector: Vector3
 var affected_bodies = []
@@ -17,7 +18,7 @@ func apply_forces():
 					affected_bodies.append(body)
 				ghost.affect_body(body)
 				print(str(ghost) + " applied force of type " + str(ghost.force_type))
-				
+				animation_player.pl
 				effect_start_time = Time.get_ticks_msec()
 				can_affect = false
 	

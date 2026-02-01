@@ -1,116 +1,158 @@
 class_name GolfBall
 extends RigidBody3D
 
-@export var max_speed : int = 8
-@export var accel : int = 5
+@export var max_speed: int = 8
+@export var accel: int = 5
 
-@onready var scaler : Marker3D = $Scaler
+# --- Timers (seconds / milliseconds where noted) ---
+@export var shoot_cooldown := 5.0          # seconds (override)
+@export var speed_check_cooldown := 1000   # ms
+@export var speed_settle_time := 500        # ms
+
+@onready var scaler: Marker3D = $Scaler
 @onready var camera_3d: Camera3D = $camera_pivot/Camera3D
 @onready var hit_animation_player: AnimationPlayer = $hit_vfx/AnimationPlayer
 
-var selected : bool = false
-var velocity : Vector3
-var speed : Vector3
-var distance : float
-var direction :Vector3
+# --- Input / aiming ---
+var selected := false
+var velocity: Vector3
+var speed: Vector3
+var distance: float
+var direction: Vector3
 
-var is_shot : bool
-var shoot_start_time : int
-#timer to make the ball shootable again regardless of speed
-@export var shoot_cooldown := 5.0
-#this timer exists so that the speed check doesn't happen immediately after the ball is shot
-var speed_check_cooldown := 1000 
-var can_check_speed := true
+# --- Shot state machine ---
+enum ShotState {
+	READY,          # Can shoot
+	IGNORE_SPEED,   # Just shot, ignore velocity
+	CHECKING_SPEED  # Waiting for settle or override
+}
+
+var shot_state: ShotState = ShotState.READY
+
+# --- Timers ---
+var shoot_start_time := 0
+var speed_settle_start_time := 0
 
 signal just_shot
 signal shot_ended
 
-func _ready() -> void:
-	#We set the scaler as top level to ignore parent's transformations.
-	#Otherwise, the camera will rotate violently.
-	scaler.set_as_top_level(true)
-	pass
 
-#Checking if the golf ball is selected.
+func _ready() -> void:
+	scaler.set_as_top_level(true)
+
+
+# -----------------------------
+# Input handling
+# -----------------------------
 func _on_input_event(camera, event, position, normal, shape_idx) -> void:
 	if event.is_action_pressed("left_mb"):
-		if !is_shot:
+		if shot_state == ShotState.READY:
 			selected = true
 
+
 func _input(event) -> void:
-	#After the mouse is released, we calculate the speed and shoot the ball in the given direction.	
-	if event.is_action_released("left_mb"):
-		if selected:
-			#Calculating the speed 
-			speed = - (direction * distance * accel).limit_length(max_speed)
-			
-			shoot(speed)
-			just_shot.emit()
-			
-			shoot_start_time = Time.get_ticks_msec()
-			is_shot = true
-			can_check_speed = false
-			
+	if event.is_action_released("left_mb") and selected:
+		speed = -(direction * distance * accel).limit_length(max_speed)
+		shoot(speed)
+
+		just_shot.emit()
+		shoot_start_time = Time.get_ticks_msec()
+		speed_settle_start_time = 0
+		shot_state = ShotState.IGNORE_SPEED
+
 		selected = false
 
-func _process(delta) -> void:
-	cooldowns()
-	scaler_follow()
-	
-	pull_meter()
-	
-	#make the ball shootable if it's not moving only after a while of being shot
-	if can_check_speed && !is_moving():
-		is_shot = false
-		shot_ended.emit()
-		
-	
-#Shooting the golf ball.
-func shoot(vector:Vector3)->void:
-	velocity = Vector3(vector.x,0,vector.z)
-	play_hit_particles()
-	self.apply_impulse(velocity, Vector3.ZERO)
-	
-func play_hit_particles():
-	hit_animation_player.play("hit_animation")
-	
-#Function to follow the golf ball.
-func scaler_follow() -> void:
-	scaler.transform.origin = scaler.transform.origin.lerp(self.transform.origin,.8)
-	
-func pull_meter() -> void:
-	#Calling the raycast from the camera node.
-	var ray_cast = camera_3d.camera_raycast()
-	
-	if not ray_cast.is_empty():
-		#Calculating the distance between the golf ball and the mouse position.
-		distance = self.position.distance_to(ray_cast.position)
-		#Calculating the direction vector between golf ball ,and mouse position.
-		direction = self.transform.origin.direction_to(ray_cast.position)
-		#Looking at the mouse position in the 3D world.
-		var target = Vector3(ray_cast.position.x,position.y,ray_cast.position.z)
-		if not scaler.global_position.is_equal_approx(target):
-			scaler.look_at(target)
-		
-		if selected:
-			#Scaling the scaler with limitation.
-			scaler.scale.z = clamp(distance,0,2)
-			
-		else:
-			#Resetting the scaler.
-			scaler.scale.z = 0.01
 
-func cooldowns():
-	var current_time = Time.get_ticks_msec()
-	var delta_shot = current_time - shoot_start_time
-	
-	if delta_shot >= shoot_cooldown*1000 && is_shot: #(*1000) converts from sec to ms 
-		print("ball shoot cooldown reset")
-		is_shot = false
-		shot_ended.emit()
-	if delta_shot >= speed_check_cooldown && !can_check_speed:
-		print("ball can check speed")
-		can_check_speed = true
-		
-func is_moving():
+# -----------------------------
+# Main loop
+# -----------------------------
+func _process(delta) -> void:
+	update_state_machine()
+	scaler_follow()
+	pull_meter()
+
+
+# -----------------------------
+# State machine logic
+# -----------------------------
+func update_state_machine() -> void:
+	var now = Time.get_ticks_msec()
+	var delta_shot = now - shoot_start_time
+
+	match shot_state:
+		ShotState.READY:
+			pass
+
+		ShotState.IGNORE_SPEED:
+			# Enable speed checking after delay
+			if delta_shot >= speed_check_cooldown:
+				shot_state = ShotState.CHECKING_SPEED
+				print("ball can check speed")
+
+			# Override cooldown
+			if delta_shot >= shoot_cooldown * 1000:
+				end_shot()
+				print("shot ended from cooldown")
+
+		ShotState.CHECKING_SPEED:
+			# Override cooldown always wins
+			if delta_shot >= shoot_cooldown * 1000:
+				end_shot()
+				print("shot ended from cooldown")
+				return
+
+			# Continuous stillness check
+			if !is_moving():
+				if speed_settle_start_time == 0:
+					print("speed settle time started")
+					speed_settle_start_time = now
+				elif now - speed_settle_start_time >= speed_settle_time:
+					end_shot()
+					print("shot ended from speed settle time")
+			else:
+				# Movement cancels settling
+				speed_settle_start_time = 0
+
+func end_shot() -> void:
+	shot_state = ShotState.READY
+	speed_settle_start_time = 0
+	shot_ended.emit()
+
+# -----------------------------
+# Shooting
+# -----------------------------
+func shoot(vector: Vector3) -> void:
+	velocity = Vector3(vector.x, 0, vector.z)
+	play_hit_particles()
+	apply_impulse(velocity, Vector3.ZERO)
+
+
+func play_hit_particles() -> void:
+	hit_animation_player.play("hit_animation")
+
+# -----------------------------
+# Helpers
+# -----------------------------
+func scaler_follow() -> void:
+	scaler.transform.origin = scaler.transform.origin.lerp(global_transform.origin, 0.8)
+
+func pull_meter() -> void:
+	var ray_cast = camera_3d.camera_raycast()
+
+	if ray_cast.is_empty():
+		return
+
+	distance = global_position.distance_to(ray_cast.position)
+	direction = global_transform.origin.direction_to(ray_cast.position)
+
+	var target = Vector3(ray_cast.position.x, global_position.y, ray_cast.position.z)
+	if !scaler.global_position.is_equal_approx(target):
+		scaler.look_at(target)
+
+	if selected:
+		scaler.scale.z = clamp(distance, 0.0, 2.0)
+	else:
+		scaler.scale.z = 0.01
+
+func is_moving() -> bool:
 	return linear_velocity.length() > 0.2
