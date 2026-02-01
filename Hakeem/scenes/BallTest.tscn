@@ -40,3 +40,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51910305, 0.6115122, -4.13
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2)
 force_power = 16.0
 effect_cooldown = 15.0
+
+[editable path="Ball"]
+[editable path="Ball/hit_vfx"]

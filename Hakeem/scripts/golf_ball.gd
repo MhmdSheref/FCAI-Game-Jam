@@ -8,7 +8,6 @@ extends RigidBody3D
 @onready var camera_3d: Camera3D = $camera_pivot/Camera3D
 @onready var hit_animation_player: AnimationPlayer = $hit_vfx/AnimationPlayer
 
-
 var selected : bool = false
 var velocity : Vector3
 var speed : Vector3
@@ -24,6 +23,7 @@ var speed_check_cooldown := 1000
 var can_check_speed := true
 
 signal just_shot
+signal shot_ended
 
 func _ready() -> void:
 	#We set the scaler as top level to ignore parent's transformations.
@@ -62,6 +62,8 @@ func _process(delta) -> void:
 	#make the ball shootable if it's not moving only after a while of being shot
 	if can_check_speed && !is_moving():
 		is_shot = false
+		shot_ended.emit()
+		
 	
 #Shooting the golf ball.
 func shoot(vector:Vector3)->void:
@@ -105,6 +107,7 @@ func cooldowns():
 	if delta_shot >= shoot_cooldown*1000 && is_shot: #(*1000) converts from sec to ms 
 		print("ball shoot cooldown reset")
 		is_shot = false
+		shot_ended.emit()
 	if delta_shot >= speed_check_cooldown && !can_check_speed:
 		print("ball can check speed")
 		can_check_speed = true

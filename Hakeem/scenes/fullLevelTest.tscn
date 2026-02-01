@@ -41,7 +41,7 @@ unique_name_in_owner = true
 script = ExtResource("1_c6iih")
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_44nap")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5000486, 0.041079715, -7.4966655)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.499558, 0.109913185, -22.50236)
 
 [node name="GridMap" type="GridMap" parent="GameManager" unique_id=876672698]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

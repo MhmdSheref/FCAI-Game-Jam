@@ -4,7 +4,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o1rr5"]
 height = 0.1
-radius = 0.1
+radius = 0.2
 
 [node name="Hole" type="Area3D" unique_id=36256616]
 input_ray_pickable = false

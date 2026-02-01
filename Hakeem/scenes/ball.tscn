@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://dlxiis7mxjxjp" path="res://Hakeem/scripts/golf_ball.gd" id="1_ij5cq"]
 [ext_resource type="Material" uid="uid://cqpqqba33xhj5" path="res://Hakeem/assets/materials/golf_ball_material.tres" id="3_edty1"]
 [ext_resource type="Script" uid="uid://bj7mvhb5ctrks" path="res://Hakeem/scripts/camera_pivot.gd" id="3_tw82i"]
-[ext_resource type="Shader" uid="uid://b78tpi50pgmbs" path="res://GPUTrail-main/shaders/trail.gdshader" id="5_ggg6b"]
-[ext_resource type="Shader" uid="uid://b45cdw6kngdi7" path="res://GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_bth5r"]
-[ext_resource type="Script" uid="uid://bjbp3hkyndjos" path="res://GPUTrail-main/GPUTrail3D.gd" id="7_ng0vs"]
+[ext_resource type="Shader" uid="uid://b78tpi50pgmbs" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="5_ggg6b"]
+[ext_resource type="Shader" uid="uid://b45cdw6kngdi7" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_bth5r"]
+[ext_resource type="Script" uid="uid://bjbp3hkyndjos" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="7_ng0vs"]
 [ext_resource type="PackedScene" uid="uid://pfod3vrdysw6" path="res://Hakeem/scenes/hit_vfx.tscn" id="8_bth5r"]
+[ext_resource type="Script" uid="uid://jcdv2udrmyy" path="res://Hakeem/scripts/line_renderer.gd" id="9_ng0vs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edty1"]
 friction = 0.4
@@ -98,6 +99,13 @@ metadata/_custom_type_script = "uid://bjbp3hkyndjos"
 
 [node name="hit_vfx" parent="." unique_id=439240103 instance=ExtResource("8_bth5r")]
 
+[node name="line_trail" type="Node3D" parent="." unique_id=470714328]
+script = ExtResource("9_ng0vs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="line_trail" unique_id=255055102]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="just_shot" from="." to="line_trail" method="_on_ball_just_shot"]
+[connection signal="shot_ended" from="." to="line_trail" method="_on_ball_shot_ended"]
 
 [editable path="hit_vfx"]
