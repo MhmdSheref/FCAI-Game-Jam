@@ -16,6 +16,8 @@ var sampling := false
 
 func _ready() -> void:
 	self.set_as_top_level(true)
+	self.global_position = Vector3.ZERO
+	self.global_rotation = Vector3.ZERO
 
 func _physics_process(delta: float) -> void:
 	if not sampling:

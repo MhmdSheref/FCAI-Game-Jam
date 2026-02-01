@@ -25,11 +25,11 @@ func _on_hole_ball_entered() -> void:
 	print("win")
 
 func _on_ghost_selector_changed_ghost_selection(button) -> void:
-	ray_cast.ghost_instance = null #clear ghost instance to immediately switch to the new ghost type
+	if ray_cast.ghost_instance:
+		ray_cast.ghost_instance.queue_free() #clear ghost instance to immediately switch to the new ghost type
+	ray_cast.ghost_instance = null
 	ray_cast.building_scene = ghost_scenes[button]
 	ghost_tooltip.ghost_type = button
-	
-	
 	
 #lose condition
 func _on_killzone_death() -> void:
