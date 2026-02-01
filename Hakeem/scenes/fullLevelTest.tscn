@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://brvr0b3yd08hg" path="res://Hakeem/scenes/ball.tscn" id="2_q1rpn"]
 [ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="4_34eyx"]
 [ext_resource type="Script" uid="uid://w35rocmctxqt" path="res://Sheref/Scenes/raycast_place.gd" id="5_44nap"]
-[ext_resource type="PackedScene" uid="uid://3f623cw042ui" path="res://Hakeem/scenes/ghost.tscn" id="7_tvvy6"]
-[ext_resource type="Script" uid="uid://craekggkqk7qc" path="res://Hakeem/scripts/state_machine.gd" id="8_yiy72"]
+[ext_resource type="PackedScene" uid="uid://drpyecvpqsojc" path="res://Sheref/Scenes/pull_ghost.tscn" id="7_ah40i"]
+[ext_resource type="Script" path="res://Hakeem/scripts/state_machine.gd" id="8_yiy72"]
 [ext_resource type="Script" uid="uid://dtgvrovjwxvaj" path="res://Hakeem/scripts/ball_camera_state.gd" id="9_vjrdy"]
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_tvvy6"]
 [ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_q8v5n"]
 [ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_ah40i"]
-[ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="13_ah40i"]
+[ext_resource type="PackedScene" path="res://Hakeem/scenes/killzone.tscn" id="13_ah40i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q1rpn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -67,7 +67,7 @@ metadata/_custom_type_script = "uid://8vyuhyx0xogt"
 [node name="RayCast3D" type="RayCast3D" parent="GameManager/Freecam3D" unique_id=1299317908]
 target_position = Vector3(0, 0, -30)
 script = ExtResource("5_44nap")
-building_scene = ExtResource("7_tvvy6")
+building_scene = ExtResource("7_ah40i")
 
 [node name="StateMachine" type="Node" parent="GameManager" unique_id=235503467 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_yiy72")

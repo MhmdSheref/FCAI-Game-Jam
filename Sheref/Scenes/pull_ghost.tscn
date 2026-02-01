@@ -11,8 +11,9 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_5jwke"]
 radius = 1.0
 
-[node name="Ghost" type="StaticBody3D" unique_id=739776961]
+[node name="Ghost2" type="StaticBody3D" unique_id=739776961]
 script = ExtResource("1_1h2k0")
+force_type = 1
 infinite_effect = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1352648445]
@@ -23,7 +24,7 @@ disabled = true
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 script = ExtResource("3_jq5cm")
 
-[node name="Ghost" parent="ghost" index="0" unique_id=354178060]
+[node name="Ghost" parent="ghost" index="0" unique_id=1124708904]
 surface_material_override/4 = ExtResource("3_1h2k0")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=607854951]
