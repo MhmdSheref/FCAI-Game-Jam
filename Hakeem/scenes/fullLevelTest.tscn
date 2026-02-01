@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="4_34eyx"]
 [ext_resource type="Script" uid="uid://w35rocmctxqt" path="res://Sheref/Scenes/raycast_place.gd" id="5_44nap"]
 [ext_resource type="PackedScene" uid="uid://3f623cw042ui" path="res://Hakeem/scenes/ghost.tscn" id="7_tvvy6"]
-[ext_resource type="Script" path="res://Hakeem/scripts/state_machine.gd" id="8_yiy72"]
+[ext_resource type="Script" uid="uid://craekggkqk7qc" path="res://Hakeem/scripts/state_machine.gd" id="8_yiy72"]
 [ext_resource type="Script" uid="uid://dtgvrovjwxvaj" path="res://Hakeem/scripts/ball_camera_state.gd" id="9_vjrdy"]
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_tvvy6"]
 [ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_q8v5n"]
