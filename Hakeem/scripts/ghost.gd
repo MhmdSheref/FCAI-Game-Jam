@@ -15,6 +15,8 @@ enum ForceType{
 @export var infinite_effect := false
 @export var effect_cooldown := 1.0
 
+var _is_ghost:= true
+
 func get_force():
 	match(force_type):
 		ForceType.Push:
@@ -29,7 +31,8 @@ func affect_body(body: RigidBody3D):
 	body.apply_impulse(force_vector.normalized()*get_force())
 	
 func set_as_ghost(is_ghost: bool):
-	if is_ghost:
+	_is_ghost = is_ghost
+	if _is_ghost:
 		# Lower alpha on the mesh (Requires material to be 'Transparent' or 'Depth Draw: Always')
 		# This assumes you have a MeshInstance3D as a child
 		mesh_instance_3d.transparency = 0.5 

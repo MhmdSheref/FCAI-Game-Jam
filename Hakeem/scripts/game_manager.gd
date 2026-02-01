@@ -21,9 +21,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_hole_ball_entered() -> void:
 	pass
-	
-
 
 func _on_ghost_selector_changed_ghost_selection(button) -> void:
-	pass
+	ray_cast.ghost_instance = null #clear ghost instance to immediately switch to the new ghost type
 	ray_cast.building_scene = ghost_scenes[button]

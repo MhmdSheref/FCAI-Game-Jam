@@ -9,7 +9,7 @@ var effect_start_time : int
 var can_affect := true
 
 func apply_forces():
-	if can_affect:
+	if can_affect && !ghost._is_ghost:
 		for body in get_overlapping_bodies():
 			if body is RigidBody3D && not body in affected_bodies:
 				
