@@ -1,6 +1,7 @@
 extends RayCast3D
 
 @export var building_scene: PackedScene
+
 @export var grid_size: float = 1.0
 
 var ghost_instance: Node3D

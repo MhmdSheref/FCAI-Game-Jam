@@ -14,6 +14,8 @@ func exit():
 	for child: CanvasItem in ui.get_children():
 		child.visible = false
 	
-func _process(delta: float) -> void:
+func process(delta: float) -> void:
 	if Input.is_action_just_pressed("switch_cam"):
 		transition.emit(self, "ball_camera_state")
+		
+		
