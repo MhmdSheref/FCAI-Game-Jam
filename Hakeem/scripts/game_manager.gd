@@ -272,6 +272,14 @@ func is_dialogue_active() -> bool:
 	return dialogue_box and dialogue_box.is_displaying
 
 # Event Bus Handlers
+const GHOST_REACTION_DIALOGUES: Array[String] = [
+	"What just happened?",
+	"Woah!",
+	"Did you see that?",
+	"Balls shouldn't move like that...",
+]
+
 func _on_ghost_force_applied(ghost_type: int, force_power: float) -> void:
-	# Show "Woah!" dialogue when a ghost affects the ball
-	show_dialogue("Woah!", null, 1.5)
+	# Show random reporter reaction when a ghost affects the ball
+	var random_dialogue = GHOST_REACTION_DIALOGUES[randi() % GHOST_REACTION_DIALOGUES.size()]
+	show_dialogue(random_dialogue, reporter_portrait, 1.5)

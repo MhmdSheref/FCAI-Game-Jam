@@ -64,7 +64,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_released("__debug_camera_toggle"):
+	# Only allow Tab toggle when this camera is active (freecam mode)
+	if Input.is_action_just_released("__debug_camera_toggle") and current:
 		movement_active = not movement_active
 	
 	if movement_active:

@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_0vmuw"]
 [ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_fxb21"]
 [ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_u6on2"]
-[ext_resource type="PackedScene" path="res://Hakeem/scenes/killzone.tscn" id="13_mqmk0"]
+[ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="13_mqmk0"]
 [ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="14_wlcll"]
 [ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="15_oohrn"]
 
@@ -45,7 +45,7 @@ shadow_enabled = true
 unique_name_in_owner = true
 script = ExtResource("1_bqw1j")
 nextSecene = ExtResource("2_ug0sv")
-intro_dialogues = Array[String](["WIZARD: Golf! facinating isn't it?", "WIZARD: people will chear you on just for manipulating a physical object to a designated spot.", "WIZARD: A task made trivial by the power of ghostly manipulation.", "WIZARD: I feel like I need a refresher, its been some time since I contacted any ghosts...", "WIZARD: Use WASD to move the camera and look around with the mouse.", "WIZARD: Use Q and E to switch between ghost types", "WIZARD: Once you're ready, press B to switch to ball mode and take your shot!"])
+intro_dialogues = Array[String](["WIZARD: Golf! facinating isn't it?", "WIZARD: people will chear you on just for manipulating a physical object to a designated spot.", "WIZARD: A task made trivial by the power of ghostly manipulation.", "WIZARD: I feel like I need a refresher, its been some time since I contacted any ghosts...", "WIZARD: Use WASD to move the camera and look around with the mouse.", "WIZARD: Use Space to fly up and Shift to fly down", "WIZARD: Use Q and E to switch between ghost types", "WIZARD: Use tab to re-enable mouse control", "WIZARD: Once you're ready, press B to switch to ball mode and take your shot!"])
 transition_dialogues = Array[String](["REPORTER: And we're live! The mysterious wizard golfer is about to take their shot!", "WIZARD: Just watch and learn...", "REPORTER: The tension is palpable! What supernatural forces will they unleash?"])
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_6xoqc")]
