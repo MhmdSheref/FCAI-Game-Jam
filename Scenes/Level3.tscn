@@ -46,6 +46,8 @@ shadow_enabled = true
 unique_name_in_owner = true
 script = ExtResource("1_t5kwq")
 nextSecene = ExtResource("2_ktnig")
+intro_dialogues = Array[String](["It's time to show them how its done."])
+transition_dialogues = Array[String](["REPORTER: That last game was suspicous...", "REPORTER: Better keep our eyes peeled..."])
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_ms3ee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.29841045, -15.010636)

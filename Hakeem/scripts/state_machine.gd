@@ -21,23 +21,9 @@ func _ready() -> void:
 
 func _enter_initial_state() -> void:
 	if initial_state:
-		# Check if game manager has intro dialogues that need to complete first
-		var game_manager = get_parent() as GameManager
-		if game_manager and not game_manager.is_intro_complete():
-			# Wait for intro dialogues to finish before entering the initial state
-			EventBus.dialogue_finished.connect(_check_intro_complete)
-		else:
-			# No intro dialogues, enter immediately
-			initial_state.enter()
-			current_state = initial_state
-
-func _check_intro_complete() -> void:
-	var game_manager = get_parent() as GameManager
-	if game_manager and game_manager.is_intro_complete():
-		EventBus.dialogue_finished.disconnect(_check_intro_complete)
-		if initial_state and not current_state:
-			initial_state.enter()
-			current_state = initial_state
+		# Enter the initial state immediately (camera switches first)
+		initial_state.enter()
+		current_state = initial_state
 		
 func process(delta: float) -> void:
 	if current_state:

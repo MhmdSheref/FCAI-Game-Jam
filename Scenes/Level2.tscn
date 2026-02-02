@@ -46,6 +46,8 @@ shadow_enabled = true
 unique_name_in_owner = true
 script = ExtResource("1_2jwna")
 nextSecene = ExtResource("2_xx40l")
+intro_dialogues = Array[String](["WIZARD: No one suspects a thing... We're going to win this easily"])
+transition_dialogues = Array[String](["REPORTER: The wizard is making his move...", "REPORTER: Will he break any rules?", "WIZARD: Are ghosts really against the rules?"])
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_sgc6j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.499558, 6.270989, -28.50236)
@@ -107,6 +109,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6061659, -2.4635687, -1.5597734)
 
 [node name="GameUI" parent="GameManager" unique_id=659565879 instance=ExtResource("14_ie22q")]
+par_value = 3
 
 [node name="DialogueBox" parent="GameManager" unique_id=1693373207 instance=ExtResource("15_uxnm3")]
 

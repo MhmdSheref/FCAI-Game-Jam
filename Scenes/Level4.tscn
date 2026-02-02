@@ -44,6 +44,8 @@ shadow_enabled = true
 [node name="GameManager" type="Node" parent="." unique_id=175576669]
 unique_name_in_owner = true
 script = ExtResource("1_uw8xp")
+intro_dialogues = Array[String](["WIZARD: One more round and I'll win.", "WIZARD: Better place my ghosts strategically."])
+transition_dialogues = Array[String](["REPORTER: This wizard guy is definetly cheating!", "REPORTER: It's hard to get visual proof though..."])
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_4upjg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.29841045, 13.470305)
@@ -105,6 +107,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6061659, -2.4635687, -1.5597734)
 
 [node name="GameUI" parent="GameManager" unique_id=659565879 instance=ExtResource("15_lt6qp")]
+par_value = 8
 
 [node name="DialogueBox" parent="GameManager" unique_id=1693373207 instance=ExtResource("16_aruju")]
 

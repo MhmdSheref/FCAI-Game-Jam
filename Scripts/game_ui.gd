@@ -12,8 +12,7 @@ extends CanvasLayer
 signal restart_requested
 signal menu_requested
 signal continue_requested
-
-var par_value: int = 5
+@export var par_value: int = 5
 var current_shots: int = 0:
 	set(value):
 		current_shots = value

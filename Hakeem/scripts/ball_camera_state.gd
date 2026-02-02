@@ -7,6 +7,8 @@ func enter():
 	if game_manager.ballcam_3d:
 		game_manager.ballcam_3d.make_current()
 		print("entered ballcam state")
+	# Start transition dialogues after camera has switched
+	game_manager.start_transition_dialogues()
 
 func process(delta: float) -> void:
 	# Don't allow any actions while dialogue is active

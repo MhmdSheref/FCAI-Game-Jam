@@ -88,10 +88,9 @@ func _ready() -> void:
 		GameData.reset_game()
 	ray_cast.clear_ghosts()
 	
-	# Start intro dialogues (deferred to ensure everything is ready)
-	if intro_dialogues.size() > 0:
-		call_deferred("_start_intro_dialogues")
-	else:
+	# Mark intro as complete if there are no intro dialogues
+	# (dialogues are now triggered from free_camera_state after camera switch)
+	if intro_dialogues.size() == 0:
 		intro_complete = true
 
 func _load_reporter_portrait() -> void:
