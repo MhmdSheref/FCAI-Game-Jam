@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://djmxsanm0oebl" path="res://Hakeem/scripts/game_manager.gd" id="1_2jwna"]
 [ext_resource type="PackedScene" uid="uid://ci5djhf2onhk2" path="res://Hakeem/scenes/Hole.tscn" id="2_sgc6j"]
+[ext_resource type="PackedScene" uid="uid://wcivvopfrikk" path="res://Scenes/Level3.tscn" id="2_xx40l"]
 [ext_resource type="MeshLibrary" uid="uid://dyooyv1tv6vsc" path="res://Assets/golfFr.meshlib" id="3_xx40l"]
 [ext_resource type="PackedScene" uid="uid://brvr0b3yd08hg" path="res://Hakeem/scenes/ball.tscn" id="4_utdxf"]
+[ext_resource type="PackedScene" uid="uid://dbhsvf731pxaq" path="res://Assets/kennyGolf/flag-blue.glb" id="4_xx40l"]
 [ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="5_8wk15"]
 [ext_resource type="Script" uid="uid://w35rocmctxqt" path="res://Sheref/Scenes/raycast_place.gd" id="6_bgqvi"]
 [ext_resource type="PackedScene" uid="uid://drpyecvpqsojc" path="res://Sheref/Scenes/pull_ghost.tscn" id="7_6cjmx"]
@@ -12,7 +14,7 @@
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_ibolw"]
 [ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_6skh4"]
 [ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_0way5"]
-[ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="13_cw30w"]
+[ext_resource type="PackedScene" path="res://Hakeem/scenes/killzone.tscn" id="13_cw30w"]
 [ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="14_ie22q"]
 [ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="15_uxnm3"]
 
@@ -31,7 +33,7 @@ sky = SubResource("Sky_c6iih")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="FullLevelTest" type="Node3D" unique_id=573101184]
+[node name="FullLevelTest3" type="Node3D" unique_id=573101184]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=367762448]
 environment = SubResource("Environment_h6qgw")
@@ -43,6 +45,7 @@ shadow_enabled = true
 [node name="GameManager" type="Node" parent="." unique_id=175576669]
 unique_name_in_owner = true
 script = ExtResource("1_2jwna")
+nextSecene = ExtResource("2_xx40l")
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_sgc6j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.499558, 6.270989, -28.50236)
@@ -50,6 +53,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.499558, 6.270989, -28.5023
 [node name="CollisionShape3D" parent="GameManager/Hole" index="0" unique_id=2140770143]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016657352, -0.18662739, 0.010822296)
 debug_color = Color(0, 0.6, 0.69803923, 0.6509804)
+
+[node name="flag-blue2" parent="GameManager/Hole" unique_id=1618797855 instance=ExtResource("4_xx40l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.17542315, 0)
 
 [node name="GridMap" type="GridMap" parent="GameManager" unique_id=876672698]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
