@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://c65t8xf3esglq"]
+
+[ext_resource type="Script" uid="uid://djmxsanm0oebl" path="res://Hakeem/scripts/game_manager.gd" id="1_2jwna"]
+[ext_resource type="PackedScene" uid="uid://ci5djhf2onhk2" path="res://Hakeem/scenes/Hole.tscn" id="2_sgc6j"]
+[ext_resource type="MeshLibrary" uid="uid://dyooyv1tv6vsc" path="res://Assets/golfFr.meshlib" id="3_xx40l"]
+[ext_resource type="PackedScene" uid="uid://brvr0b3yd08hg" path="res://Hakeem/scenes/ball.tscn" id="4_utdxf"]
+[ext_resource type="Script" uid="uid://8vyuhyx0xogt" path="res://addons/freecam_3D/freecam.gd" id="5_8wk15"]
+[ext_resource type="Script" uid="uid://w35rocmctxqt" path="res://Sheref/Scenes/raycast_place.gd" id="6_bgqvi"]
+[ext_resource type="PackedScene" uid="uid://drpyecvpqsojc" path="res://Sheref/Scenes/pull_ghost.tscn" id="7_6cjmx"]
+[ext_resource type="Script" uid="uid://craekggkqk7qc" path="res://Hakeem/scripts/state_machine.gd" id="8_s6bta"]
+[ext_resource type="Script" uid="uid://dtgvrovjwxvaj" path="res://Hakeem/scripts/ball_camera_state.gd" id="9_lt7tp"]
+[ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_ibolw"]
+[ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_6skh4"]
+[ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_0way5"]
+[ext_resource type="PackedScene" path="res://Hakeem/scenes/killzone.tscn" id="13_cw30w"]
+[ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="14_ie22q"]
+[ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="15_uxnm3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q1rpn"]
+sky_top_color = Color(0.3156387, 0.400838, 0.8336093, 1)
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_bottom_color = Color(0.36250004, 0.48531127, 0.8364927, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_c6iih"]
+sky_material = SubResource("ProceduralSkyMaterial_q1rpn")
+
+[sub_resource type="Environment" id="Environment_h6qgw"]
+background_mode = 2
+sky = SubResource("Sky_c6iih")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="FullLevelTest" type="Node3D" unique_id=573101184]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=367762448]
+environment = SubResource("Environment_h6qgw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=307499351]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="GameManager" type="Node" parent="." unique_id=175576669]
+unique_name_in_owner = true
+script = ExtResource("1_2jwna")
+
+[node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_sgc6j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.499558, 6.270989, -28.50236)
+
+[node name="CollisionShape3D" parent="GameManager/Hole" index="0" unique_id=2140770143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016657352, -0.18662739, 0.010822296)
+debug_color = Color(0, 0.6, 0.69803923, 0.6509804)
+
+[node name="GridMap" type="GridMap" parent="GameManager" unique_id=876672698]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh_library = ExtResource("3_xx40l")
+cell_size = Vector3(0.5, 0.05, 0.5)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(65534, 5, 36, 65532, 5, 1441828, 65534, 3, 655373, 65532, 3, 655368, 65532, 1, 655446, 65534, 1, 655446, 65532, 0, 655437, 65534, 0, 655437, 1376254, 65528, 655440, 1376252, 65528, 655440, 2686972, 65519, 111, 2686974, 65519, 110, 2686973, 65517, 655374, 2686971, 65517, 1441792, 2686975, 65517, 1048576, 2686973, 65515, 655360)
+}
+metadata/_editor_floor_ = Vector3(0, 40, 0)
+
+[node name="Ball" parent="GameManager" unique_id=411611324 instance=ExtResource("4_utdxf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0178313, 0.37401742, 7.8896847)
+
+[node name="Freecam3D" type="Camera3D" parent="GameManager" unique_id=835960371]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("5_8wk15")
+metadata/_custom_type_script = "uid://8vyuhyx0xogt"
+
+[node name="RayCast3D" type="RayCast3D" parent="GameManager/Freecam3D" unique_id=1299317908]
+target_position = Vector3(0, 0, -30)
+script = ExtResource("6_bgqvi")
+building_scene = ExtResource("7_6cjmx")
+
+[node name="StateMachine" type="Node" parent="GameManager" unique_id=235503467 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("8_s6bta")
+initial_state = NodePath("ball_camera_state")
+
+[node name="ball_camera_state" type="Node" parent="GameManager/StateMachine" unique_id=472957464]
+script = ExtResource("9_lt7tp")
+
+[node name="free_camera_state" type="Node" parent="GameManager/StateMachine" unique_id=1454004940]
+script = ExtResource("10_ibolw")
+
+[node name="ui" type="Node" parent="GameManager" unique_id=1845031449]
+
+[node name="ghost_selector" parent="GameManager/ui" unique_id=992232534 instance=ExtResource("11_6skh4")]
+visible = false
+offset_top = -181.0
+offset_bottom = 8.0
+
+[node name="ghost_tooltip" parent="GameManager/ui" unique_id=640808707 instance=ExtResource("12_0way5")]
+visible = false
+
+[node name="Killzone" parent="GameManager" unique_id=258273182 instance=ExtResource("13_cw30w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6061659, -2.4635687, -1.5597734)
+
+[node name="GameUI" parent="GameManager" unique_id=659565879 instance=ExtResource("14_ie22q")]
+
+[node name="DialogueBox" parent="GameManager" unique_id=1693373207 instance=ExtResource("15_uxnm3")]
+
+[connection signal="ball_entered" from="GameManager/Hole" to="GameManager" method="_on_hole_ball_entered"]
+[connection signal="changed_ghost_selection" from="GameManager/ui/ghost_selector" to="GameManager" method="_on_ghost_selector_changed_ghost_selection"]
+[connection signal="death" from="GameManager/Killzone" to="GameManager" method="_on_killzone_death"]
+
+[editable path="GameManager/Hole"]
+[editable path="GameManager/Ball"]
+[editable path="GameManager/Ball/hit_vfx"]

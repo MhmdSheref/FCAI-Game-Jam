@@ -8,7 +8,6 @@ extends CanvasLayer
 @onready var lose_panel: PanelContainer = $LosePanel
 @onready var win_shots_label: Label = $WinPanel/VBoxContainer/ShotsLabel
 @onready var win_message_label: Label = $WinPanel/VBoxContainer/MessageLabel
-@onready var name_input: LineEdit = $WinPanel/VBoxContainer/NameInput
 
 signal restart_requested
 signal menu_requested
@@ -73,11 +72,6 @@ func show_win_screen() -> void:
 	
 	win_shots_label.text = "Shots: %d" % current_shots
 	
-	# Show name input if high score
-	if has_node("/root/GameData"):
-		var game_data = get_node("/root/GameData")
-		name_input.visible = game_data.is_high_score(current_shots)
-	
 	# Pause game while showing win screen
 	get_tree().paused = true
 
@@ -92,12 +86,6 @@ func hide_popups() -> void:
 
 func _on_continue_button_pressed() -> void:
 	AudioManager.play_ui_click()
-	# Save high score if name entered
-	if name_input.visible and name_input.text.length() > 0:
-		if has_node("/root/GameData"):
-			var game_data = get_node("/root/GameData")
-			game_data.add_high_score(name_input.text, current_shots)
-	
 	hide_popups()
 	continue_requested.emit()
 

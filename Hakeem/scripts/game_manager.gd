@@ -1,6 +1,6 @@
 class_name GameManager
 extends Node
-
+@export var nextSecene: PackedScene
 @onready var ballcam_3d: Camera3D = $Ball/camera_pivot/Camera3D
 @onready var freecam_3d: Freecam3D = $Freecam3D
 @onready var state_machine: StateMachine = $StateMachine
@@ -89,14 +89,12 @@ func _on_menu_requested() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_continue_requested() -> void:
-	# For now, just reload the same level
-	# In a full game, this would load the next level
-	shot_counter = 0
-	if GameData:
-		GameData.reset_game()
-	get_tree().reload_current_scene()
-	ray_cast.clear_ghosts()
-	state_machine.on_child_transition(state_machine.current_state, "ball_cam_state")
+	# Load the next level
+	if nextSecene:
+		get_tree().change_scene_to_packed(nextSecene)
+	else:
+		# Fallback: reload current scene if no next scene set
+		get_tree().reload_current_scene()
 
 # Dialogue System
 func show_dialogue(text: String, portrait: Texture2D = null, duration: float = 0.0) -> void:
