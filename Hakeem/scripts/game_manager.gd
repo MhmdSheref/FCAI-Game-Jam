@@ -19,7 +19,51 @@ const ghost_scenes := {
 
 var shot_counter := 0
 
+# Character portraits
+var wizard_portrait: Texture2D = preload("res://Hakeem/assets/portraits/wizard_portrait.png")
+var reporter_portrait: Texture2D = null
+
+# Character enum for easy reference
+enum Character { WIZARD, REPORTER }
+
+# ============================================================================
+# DIALOGUE SYSTEM
+# ============================================================================
+# Format: Each entry is "CHARACTER:message" where CHARACTER is WIZARD or REPORTER
+# Example: "WIZARD:Hello there!" or "REPORTER:What's happening?"
+
+@export_group("Intro Dialogues (Before Free Cam)")
+## Dialogues before free cam starts. Format: "WIZARD:text" or "REPORTER:text"
+@export var intro_dialogues: Array[String] = [
+	"WIZARD:Welcome, young wizard! This is a magical golf course.",
+	"WIZARD:Use WASD to move the camera and look around with the mouse.",
+	"WIZARD:Click to place ghosts that will affect the ball's trajectory.",
+	"WIZARD:Once you're ready, press B to switch to ball mode and take your shot!",
+]
+
+@export_group("Transition Dialogues (After Free Cam)")
+## Dialogues after pressing B, before ball mode starts. Format: "WIZARD:text" or "REPORTER:text"
+@export var transition_dialogues: Array[String] = [
+	"REPORTER:And we're live! The mysterious wizard golfer is about to take their shot!",
+	"WIZARD:Just watch and learn...",
+	"REPORTER:The tension is palpable! What supernatural forces will they unleash?",
+]
+
+@export_group("Dialogue Settings")
+## Duration each dialogue stays on screen (0 = wait for click)
+@export var dialogue_duration: float = 0.0
+
+# Dialogue state tracking
+var current_dialogue_index: int = 0
+var current_dialogue_array: Array[String] = []
+var intro_complete: bool = false
+var transition_complete: bool = false
+var _dialogue_callback: Callable
+
 func _ready() -> void:
+	# Load reporter portrait (with fallback)
+	_load_reporter_portrait()
+	
 	# Connect ball shot signal to track shots
 	if ball:
 		ball.just_shot.connect(_on_ball_shot)
@@ -33,12 +77,113 @@ func _ready() -> void:
 	# Connect EventBus signals
 	if EventBus:
 		EventBus.ghost_force_applied.connect(_on_ghost_force_applied)
+		EventBus.dialogue_finished.connect(_on_dialogue_finished)
 	
 	# Reset game data for new game
 	if GameData:
 		GameData.reset_game()
 	ray_cast.clear_ghosts()
+	
+	# Start intro dialogues (deferred to ensure everything is ready)
+	if intro_dialogues.size() > 0:
+		call_deferred("_start_intro_dialogues")
+	else:
+		intro_complete = true
 
+func _load_reporter_portrait() -> void:
+	var reporter_path = "res://Hakeem/assets/portraits/reporter_portrait.png"
+	if ResourceLoader.exists(reporter_path):
+		reporter_portrait = load(reporter_path)
+	else:
+		reporter_portrait = null  # Will show empty portrait
+
+func _get_portrait_for_character(character: Character) -> Texture2D:
+	match character:
+		Character.WIZARD:
+			return wizard_portrait
+		Character.REPORTER:
+			return reporter_portrait
+	return null
+
+func _parse_dialogue_line(line: String) -> Dictionary:
+	"""Parse a dialogue line in format 'CHARACTER:message' and return {character, text, portrait}"""
+	var result = {"character": Character.WIZARD, "text": line, "portrait": wizard_portrait}
+	
+	if line.begins_with("WIZARD:"):
+		result.text = line.substr(7)  # Remove "WIZARD:"
+		result.character = Character.WIZARD
+		result.portrait = wizard_portrait
+	elif line.begins_with("REPORTER:"):
+		result.text = line.substr(9)  # Remove "REPORTER:"
+		result.character = Character.REPORTER
+		result.portrait = reporter_portrait
+	# If no prefix, default to wizard
+	
+	return result
+
+# ============================================================================
+# INTRO DIALOGUES (Before Free Cam)
+# ============================================================================
+func _start_intro_dialogues() -> void:
+	current_dialogue_array = intro_dialogues
+	current_dialogue_index = 0
+	_dialogue_callback = _on_intro_dialogue_complete
+	_show_next_dialogue()
+
+func _on_intro_dialogue_complete() -> void:
+	intro_complete = true
+
+func is_intro_complete() -> bool:
+	return intro_complete
+
+# ============================================================================
+# TRANSITION DIALOGUES (After Free Cam, Before Ball Mode)
+# ============================================================================
+func start_transition_dialogues() -> void:
+	"""Call this when free cam ends to start transition dialogues"""
+	if transition_dialogues.size() > 0:
+		current_dialogue_array = transition_dialogues
+		current_dialogue_index = 0
+		transition_complete = false
+		_dialogue_callback = _on_transition_dialogue_complete
+		_show_next_dialogue()
+	else:
+		transition_complete = true
+
+func _on_transition_dialogue_complete() -> void:
+	transition_complete = true
+
+func is_transition_complete() -> bool:
+	return transition_complete
+
+# ============================================================================
+# DIALOGUE PLAYBACK ENGINE
+# ============================================================================
+func _show_next_dialogue() -> void:
+	if current_dialogue_index < current_dialogue_array.size():
+		var parsed = _parse_dialogue_line(current_dialogue_array[current_dialogue_index])
+		EventBus.emit_dialogue(parsed.text, parsed.portrait, dialogue_duration)
+	else:
+		# All dialogues finished
+		if _dialogue_callback.is_valid():
+			_dialogue_callback.call()
+
+func _on_dialogue_finished() -> void:
+	# Only process if we're in a dialogue sequence
+	if current_dialogue_array.size() > 0 and current_dialogue_index < current_dialogue_array.size():
+		current_dialogue_index += 1
+		if current_dialogue_index < current_dialogue_array.size():
+			# Small delay before showing next dialogue
+			get_tree().create_timer(0.2).timeout.connect(_show_next_dialogue)
+		else:
+			# Sequence complete
+			if _dialogue_callback.is_valid():
+				_dialogue_callback.call()
+			current_dialogue_array = []
+
+# ============================================================================
+# GAME LOGIC
+# ============================================================================
 func _process(delta: float) -> void:
 	state_machine.process(delta)
 	
@@ -97,9 +242,9 @@ func _on_continue_requested() -> void:
 		# Fallback: reload current scene if no next scene set
 		get_tree().reload_current_scene()
 
-# Dialogue System
+# Dialogue System (direct API)
 func show_dialogue(text: String, portrait: Texture2D = null, duration: float = 0.0) -> void:
-	"""Display a dialogue message. Only works in ball_camera_state."""
+	"""Display a dialogue message."""
 	if dialogue_box:
 		dialogue_box.show_dialogue(text, portrait, duration)
 
