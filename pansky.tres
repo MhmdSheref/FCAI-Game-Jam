@@ -1,0 +1,7 @@
+[gd_resource type="PanoramaSkyMaterial" format=3 uid="uid://dl0x7685r6ldd"]
+
+[ext_resource type="Texture2D" uid="uid://dm63ms1yycras" path="res://Assets/noon_grass_4k.exr" id="1_30non"]
+
+[resource]
+panorama = ExtResource("1_30non")
+energy_multiplier = 0.3

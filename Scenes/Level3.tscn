@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://wcivvopfrikk"]
 
+[ext_resource type="Material" uid="uid://dl0x7685r6ldd" path="res://pansky.tres" id="1_nfsas"]
 [ext_resource type="Script" uid="uid://djmxsanm0oebl" path="res://Hakeem/scripts/game_manager.gd" id="1_t5kwq"]
 [ext_resource type="PackedScene" uid="uid://2uy3p24dwfyb" path="res://Scenes/Level4.tscn" id="2_ktnig"]
 [ext_resource type="PackedScene" uid="uid://ci5djhf2onhk2" path="res://Hakeem/scenes/Hole.tscn" id="2_ms3ee"]
@@ -14,24 +15,23 @@
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_bnsu8"]
 [ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_al7xm"]
 [ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_81bqa"]
-[ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="13_yi7gs"]
+[ext_resource type="PackedScene" path="res://Hakeem/scenes/killzone.tscn" id="13_yi7gs"]
 [ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="14_dg25f"]
 [ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="15_ffujx"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q1rpn"]
-sky_top_color = Color(0.3156387, 0.400838, 0.8336093, 1)
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_bottom_color = Color(0.36250004, 0.48531127, 0.8364927, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
 [sub_resource type="Sky" id="Sky_c6iih"]
-sky_material = SubResource("ProceduralSkyMaterial_q1rpn")
+sky_material = ExtResource("1_nfsas")
 
 [sub_resource type="Environment" id="Environment_h6qgw"]
 background_mode = 2
 sky = SubResource("Sky_c6iih")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nfsas"]
+rough = true
+bounce = 1.0
+absorbent = true
 
 [node name="FullLevelTest" type="Node3D" unique_id=573101184]
 
@@ -62,6 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19133481, 0)
 [node name="GridMap" type="GridMap" parent="GameManager" unique_id=876672698]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh_library = ExtResource("3_ktnig")
+physics_material = SubResource("PhysicsMaterial_nfsas")
 cell_size = Vector3(0.5, 0.05, 0.5)
 cell_center_x = false
 cell_center_y = false

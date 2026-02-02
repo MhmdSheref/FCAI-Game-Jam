@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3utw4830u1ip"]
 
 [ext_resource type="Script" uid="uid://djmxsanm0oebl" path="res://Hakeem/scripts/game_manager.gd" id="1_bqw1j"]
-[ext_resource type="Texture2D" uid="uid://dm63ms1yycras" path="res://Assets/noon_grass_4k.exr" id="1_jgorv"]
+[ext_resource type="Material" uid="uid://dl0x7685r6ldd" path="res://pansky.tres" id="1_jgorv"]
 [ext_resource type="PackedScene" uid="uid://ci5djhf2onhk2" path="res://Hakeem/scenes/Hole.tscn" id="2_6xoqc"]
 [ext_resource type="PackedScene" uid="uid://c2nc44uvie3vw" path="res://Scenes/Level2.tscn" id="2_ug0sv"]
 [ext_resource type="MeshLibrary" uid="uid://dyooyv1tv6vsc" path="res://Assets/golfFr.meshlib" id="3_8j1bt"]
@@ -15,16 +15,12 @@
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_0vmuw"]
 [ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_fxb21"]
 [ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_u6on2"]
-[ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="13_mqmk0"]
+[ext_resource type="PackedScene" path="res://Hakeem/scenes/killzone.tscn" id="13_mqmk0"]
 [ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="14_wlcll"]
 [ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="15_oohrn"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_q1ws5"]
-panorama = ExtResource("1_jgorv")
-energy_multiplier = 0.5
-
 [sub_resource type="Sky" id="Sky_c6iih"]
-sky_material = SubResource("PanoramaSkyMaterial_q1ws5")
+sky_material = ExtResource("1_jgorv")
 
 [sub_resource type="Environment" id="Environment_h6qgw"]
 background_mode = 2
