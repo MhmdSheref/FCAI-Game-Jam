@@ -33,6 +33,8 @@ func _load_sounds() -> void:
 	var sound_files = {
 		"hit": "res://Assets/Sounds/ball_hit.wav",
 		"ghost": "res://Assets/Sounds/ghost_activate.wav",
+		"ghost_place_1": "res://Assets/Sounds/ghost_place_1.wav",
+		"ghost_place_2": "res://Assets/Sounds/ghost_place_2.wav",
 		"win": "res://Assets/Sounds/win.wav",
 		"lose": "res://Assets/Sounds/lose.wav",
 		"ui_click": "res://Assets/Sounds/ui_click.wav",
@@ -105,6 +107,11 @@ func play_lose() -> void:
 
 func play_ui_click() -> void:
 	play_sfx("ui_click")
+
+func play_ghost_place() -> void:
+	# Randomly choose between ghost_place_1 and ghost_place_2
+	var variant = randi_range(1, 2)
+	play_sfx("ghost_place_%d" % variant)
 
 func set_master_volume(volume: float) -> void:
 	master_volume = clamp(volume, 0.0, 1.0)

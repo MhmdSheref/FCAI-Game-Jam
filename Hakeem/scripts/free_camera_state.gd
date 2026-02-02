@@ -17,5 +17,11 @@ func exit():
 func process(delta: float) -> void:
 	if Input.is_action_just_pressed("switch_cam"):
 		transition.emit(self, "ball_camera_state")
+	
+	# Ghost type switching with Q and E
+	if Input.is_action_just_pressed("switch_ghost_left"):
+		EventBus.switch_ghost_left_requested.emit()
+	if Input.is_action_just_pressed("switch_ghost_right"):
+		EventBus.switch_ghost_right_requested.emit()
 		
 		

@@ -5,9 +5,9 @@ extends CanvasLayer
 
 @onready var panel_container: PanelContainer = $PanelContainer
 @onready var text_label: RichTextLabel = $PanelContainer/MarginContainer/HBoxContainer/TextLabel
-@onready var portrait_container: PanelContainer = $PanelContainer/MarginContainer/HBoxContainer/PortraitContainer
-@onready var portrait: TextureRect = $PanelContainer/MarginContainer/HBoxContainer/PortraitContainer/Portrait
-@onready var placeholder_bg: ColorRect = $PanelContainer/MarginContainer/HBoxContainer/PortraitContainer/PlaceholderBG
+@onready var portrait_container: PanelContainer = $PortraitContainer
+@onready var portrait: TextureRect = $PortraitContainer/Portrait
+@onready var placeholder_bg: ColorRect = $PortraitContainer/PlaceholderBG
 @onready var text_timer: Timer = $TextTimer
 @onready var display_timer: Timer = $DisplayTimer
 
@@ -20,6 +20,12 @@ signal dialogue_finished
 func _ready() -> void:
 	# Hide initially
 	panel_container.visible = false
+	portrait_container.visible = false
+	# Connect to EventBus for global dialogue requests
+	EventBus.dialogue_requested.connect(_on_dialogue_requested)
+
+func _on_dialogue_requested(text: String, portrait_texture: Texture2D, duration: float) -> void:
+	show_dialogue(text, portrait_texture, duration)
 
 func show_dialogue(text: String, portrait_texture: Texture2D = null, duration: float = 0.0, custom_box_texture: Texture2D = null) -> void:
 	"""
@@ -48,8 +54,13 @@ func show_dialogue(text: String, portrait_texture: Texture2D = null, duration: f
 		portrait.visible = false
 		placeholder_bg.visible = true
 	
-	# Show panel and start text animation
+	# Set the display duration if provided
+	if duration > 0:
+		display_timer.wait_time = duration
+	
+	# Show panel and portrait, start text animation
 	panel_container.visible = true
+	portrait_container.visible = true
 	text_label.text = full_text
 	text_timer.start()
 
@@ -72,10 +83,12 @@ func _on_display_timer_timeout() -> void:
 
 func hide_dialogue() -> void:
 	panel_container.visible = false
+	portrait_container.visible = false
 	is_displaying = false
 	text_timer.stop()
 	display_timer.stop()
 	dialogue_finished.emit()
+	EventBus.dialogue_finished.emit()
 
 func skip_animation() -> void:
 	"""Skip to showing full text immediately"""

@@ -8,6 +8,7 @@ extends RayCast3D
 
 var ghost_instance: Node3D
 var ghost_list: Array[Node3D]
+var wizard_portrait: Texture2D = preload("res://Hakeem/assets/portraits/wizard_portrait.png")
 
 func _process(_delta: float) -> void:
 	if is_colliding() && freecam_3d.movement_active:
@@ -48,7 +49,7 @@ func place_building():
 			
 			# Check if tile is already occupied
 			if is_tile_occupied(target_pos):
-				print("tile already occupied")
+				EventBus.emit_dialogue("I can't place two ghosts in the same spot", wizard_portrait, 3.0)
 				return
 			
 			var ghost_distance_from_ball = target_pos - ball.global_position
@@ -57,10 +58,11 @@ func place_building():
 				if ghost_instance.has_method("set_as_ghost"):
 					ghost_instance.set_as_ghost(false)
 				ghost_list.append(ghost_instance)
+				AudioManager.play_ghost_place()
 				# Clear the reference so the next frame spawns a new ghost
 				ghost_instance = null
 			else:
-				print("ghost too close to ball")
+				EventBus.emit_dialogue("I can't place the ghosts too close to the ball or people might get suspicious...", wizard_portrait, 3.0)
 			
 func clear_ghosts():
 	for ghost in ghost_list:

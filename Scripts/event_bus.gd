@@ -7,6 +7,8 @@ extends Node
 signal ghost_force_applied(ghost_type: int, force_power: float)
 signal ghost_placed(ghost_type: int, position: Vector3)
 signal ghost_removed(position: Vector3)
+signal switch_ghost_left_requested()
+signal switch_ghost_right_requested()
 
 # Ball Events
 signal ball_shot(velocity: Vector3)

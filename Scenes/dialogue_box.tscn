@@ -23,7 +23,7 @@ color = Color(0, 0, 0, 0.7)
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 260
 theme_override_constants/margin_bottom = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
@@ -41,16 +41,24 @@ text = ""
 fit_content = true
 scroll_active = false
 
-[node name="PortraitContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 2
-size_flags_horizontal = 0
+[node name="PortraitContainer" type="PanelContainer" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260
+offset_top = -240
+offset_right = -20
+offset_bottom = -15
+grow_horizontal = 0
+grow_vertical = 0
 
-[node name="PlaceholderBG" type="ColorRect" parent="PanelContainer/MarginContainer/HBoxContainer/PortraitContainer"]
+[node name="PlaceholderBG" type="ColorRect" parent="PortraitContainer"]
 layout_mode = 2
 color = Color(0.2, 0.2, 0.2, 0.8)
 
-[node name="Portrait" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer/PortraitContainer"]
+[node name="Portrait" type="TextureRect" parent="PortraitContainer"]
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5

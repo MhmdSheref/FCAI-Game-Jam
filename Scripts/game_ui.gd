@@ -91,6 +91,7 @@ func hide_popups() -> void:
 	get_tree().paused = false
 
 func _on_continue_button_pressed() -> void:
+	AudioManager.play_ui_click()
 	# Save high score if name entered
 	if name_input.visible and name_input.text.length() > 0:
 		if has_node("/root/GameData"):
@@ -101,11 +102,13 @@ func _on_continue_button_pressed() -> void:
 	continue_requested.emit()
 
 func _on_restart_button_pressed() -> void:
+	AudioManager.play_ui_click()
 	hide_popups()
 	if has_node("/root/GameData"):
 		get_node("/root/GameData").reset_game()
 	restart_requested.emit()
 
 func _on_menu_button_pressed() -> void:
+	AudioManager.play_ui_click()
 	hide_popups()
 	menu_requested.emit()

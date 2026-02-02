@@ -21,19 +21,23 @@ func _ready() -> void:
 	tween.tween_property(self, "modulate:a", 1.0, 0.5)
 
 func _on_play_pressed() -> void:
+	AudioManager.play_ui_click()
 	# Fade out and change scene
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.3)
 	tween.tween_callback(func(): get_tree().change_scene_to_file("res://Hakeem/scenes/fullLevelTest.tscn"))
 
 func _on_leaderboard_pressed() -> void:
+	AudioManager.play_ui_click()
 	leaderboard_panel.visible = true
 	_populate_leaderboard()
 
 func _on_back_pressed() -> void:
+	AudioManager.play_ui_click()
 	leaderboard_panel.visible = false
 
 func _on_quit_pressed() -> void:
+	AudioManager.play_ui_click()
 	get_tree().quit()
 
 func _populate_leaderboard() -> void:
