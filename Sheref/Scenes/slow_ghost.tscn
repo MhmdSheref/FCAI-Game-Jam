@@ -4,43 +4,50 @@
 [ext_resource type="PackedScene" uid="uid://5cf66lw6mb2s" path="res://Hakeem/assets/models/ghost.glb" id="2_model"]
 [ext_resource type="Script" uid="uid://bvtjpmgterjnw" path="res://Hakeem/scripts/float.gd" id="3_float"]
 [ext_resource type="Script" uid="uid://4eagk3qi83da" path="res://Hakeem/scripts/ghost_area.gd" id="4_area"]
+[ext_resource type="Material" uid="uid://bo74qf71pd54m" path="res://Sheref/Materials/ghost_hat_slow.tres" id="4_pymak"]
 [ext_resource type="PackedScene" uid="uid://pfod3vrdysw6" path="res://Hakeem/scenes/hit_vfx.tscn" id="6_hitvfx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_slow"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_slow"]
-radius = 1.5
+radius = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slow"]
-albedo_color = Color(0.6, 0.4, 0.9, 1.0)
-emission_enabled = true
-emission = Color(0.5, 0.3, 0.8, 1)
-emission_energy_multiplier = 0.3
+[sub_resource type="SphereMesh" id="SphereMesh_pymak"]
+radius = 1.0
+height = 2.0
 
-[node name="SlowGhost" type="StaticBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44qvp"]
+transparency = 1
+albedo_color = Color(0.18500005, 0, 0.3, 0.31764707)
+
+[node name="SlowGhost" type="StaticBody3D" unique_id=53678130]
+collision_layer = 4
 script = ExtResource("1_ghost")
 force_type = 3
 infinite_effect = true
-slow_factor = 0.3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1433920799]
 shape = SubResource("BoxShape3D_slow")
 disabled = true
 
-[node name="ghost" parent="." instance=ExtResource("2_model")]
+[node name="ghost" parent="." unique_id=1822701794 instance=ExtResource("2_model")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 script = ExtResource("3_float")
 
-[node name="Ghost" parent="ghost" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_slow")
+[node name="Ghost" parent="ghost" index="0" unique_id=354178060]
+surface_material_override/4 = ExtResource("4_pymak")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1289827827]
 input_ray_pickable = false
 script = ExtResource("4_area")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1572220692]
 shape = SubResource("SphereShape3D_slow")
 
-[node name="hit_vfx" parent="Area3D" instance=ExtResource("6_hitvfx")]
+[node name="hit_vfx" parent="Area3D" unique_id=723287956 instance=ExtResource("6_hitvfx")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=681810392]
+mesh = SubResource("SphereMesh_pymak")
+surface_material_override/0 = SubResource("StandardMaterial3D_44qvp")
 
 [editable path="ghost"]

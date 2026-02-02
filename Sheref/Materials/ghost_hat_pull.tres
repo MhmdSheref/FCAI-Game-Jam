@@ -2,4 +2,4 @@
 
 [resource]
 transparency = 4
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0.37, 0.0777, 0.0777, 1)

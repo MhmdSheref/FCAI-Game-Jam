@@ -122,7 +122,7 @@ func end_shot() -> void:
 # Shooting
 # -----------------------------
 func shoot(vector: Vector3) -> void:
-	velocity = Vector3(vector.x, 0, vector.z)
+	velocity = Vector3(vector.x, 1.0, vector.z) #very small bounce in y axis
 	play_hit_particles()
 	apply_impulse(velocity, Vector3.ZERO)
 	# Play hit sound

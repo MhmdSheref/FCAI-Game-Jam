@@ -35,6 +35,7 @@ transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 script = ExtResource("3_yktc1")
 
 [node name="Ghost" parent="ghost" index="0" unique_id=354178060]
+transform = Transform3D(0.0007932889, 0.12929235, -0.056500245, -4.2051282e-09, 0.05650114, 0.12929437, 0.14109845, -0.00072691037, 0.00031766164, 0.5823119, 1.1245358, 0.012231454)
 surface_material_override/4 = ExtResource("4_u8no4")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=607854951]
@@ -47,6 +48,6 @@ shape = SubResource("SphereShape3D_5jwke")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1398769214]
 mesh = SubResource("SphereMesh_vqmdg")
 
-[node name="hit_vfx" parent="Area3D" instance=ExtResource("6_hitvfx")]
+[node name="hit_vfx" parent="Area3D" unique_id=2049301668 instance=ExtResource("6_hitvfx")]
 
 [editable path="ghost"]

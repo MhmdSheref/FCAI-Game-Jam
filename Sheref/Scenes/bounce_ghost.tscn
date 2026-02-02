@@ -4,47 +4,50 @@
 [ext_resource type="PackedScene" uid="uid://5cf66lw6mb2s" path="res://Hakeem/assets/models/ghost.glb" id="2_model"]
 [ext_resource type="Script" uid="uid://bvtjpmgterjnw" path="res://Hakeem/scripts/float.gd" id="3_float"]
 [ext_resource type="Script" uid="uid://4eagk3qi83da" path="res://Hakeem/scripts/ghost_area.gd" id="4_area"]
+[ext_resource type="Material" uid="uid://bc25k6myfycn2" path="res://Sheref/Materials/ghost_hat_bounce.tres" id="4_qreej"]
 [ext_resource type="PackedScene" uid="uid://pfod3vrdysw6" path="res://Hakeem/scenes/hit_vfx.tscn" id="6_hitvfx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bounce"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_qreej"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qreej"]
+transparency = 1
+albedo_color = Color(0.10319998, 0.3, 0.054000005, 0.23921569)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_bounce"]
-radius = 1.2
+radius = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bounce"]
-albedo_color = Color(0.2, 0.9, 0.3, 1.0)
-emission_enabled = true
-emission = Color(0.1, 0.8, 0.2, 1)
-emission_energy_multiplier = 0.5
-
-[node name="BounceGhost" type="StaticBody3D"]
+[node name="BounceGhost" type="StaticBody3D" unique_id=2036362339]
+collision_layer = 4
 script = ExtResource("1_ghost")
 force_type = 2
 infinite_effect = true
-bounce_height = 8.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1368911078]
 shape = SubResource("BoxShape3D_bounce")
 disabled = true
 
-[node name="ghost" parent="." instance=ExtResource("2_model")]
+[node name="ghost" parent="." unique_id=35973958 instance=ExtResource("2_model")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 script = ExtResource("3_float")
 
-[node name="Ghost" parent="ghost" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_bounce")
+[node name="Ghost" parent="ghost" index="0" unique_id=354178060]
+surface_material_override/4 = ExtResource("4_qreej")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1878252966]
 input_ray_pickable = false
 script = ExtResource("4_area")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=701910688]
+mesh = SubResource("SphereMesh_qreej")
+surface_material_override/0 = SubResource("StandardMaterial3D_qreej")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=217388942]
 shape = SubResource("SphereShape3D_bounce")
 
-[node name="hit_vfx" parent="Area3D" instance=ExtResource("6_hitvfx")]
-
-[node name="BounceIndicator" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-visible = true
+[node name="hit_vfx" parent="Area3D" unique_id=956722945 instance=ExtResource("6_hitvfx")]
 
 [editable path="ghost"]

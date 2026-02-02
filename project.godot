@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameData="*res://Scripts/game_data.gd"
 AudioManager="*res://Scripts/audio_manager.gd"
+EventBus="*res://Scripts/event_bus.gd"
 
 [editor_plugins]
 

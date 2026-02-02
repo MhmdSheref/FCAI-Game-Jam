@@ -59,6 +59,8 @@ material = SubResource("ShaderMaterial_02lvv")
 physics_material_override = SubResource("PhysicsMaterial_edty1")
 linear_damp = 1.0
 script = ExtResource("1_ij5cq")
+max_speed = 50
+shoot_cooldown = 8.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1325759386]
 mesh = SubResource("SphereMesh_25osk")

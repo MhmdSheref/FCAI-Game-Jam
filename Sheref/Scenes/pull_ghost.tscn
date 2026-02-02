@@ -49,6 +49,6 @@ shape = SubResource("SphereShape3D_5jwke")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1449313876]
 mesh = SubResource("SphereMesh_jq5cm")
 
-[node name="hit_vfx" parent="Area3D" instance=ExtResource("6_hitvfx")]
+[node name="hit_vfx" parent="Area3D" unique_id=543967736 instance=ExtResource("6_hitvfx")]
 
 [editable path="ghost"]

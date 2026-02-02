@@ -8,6 +8,7 @@ extends Node
 @onready var ghost_tooltip: Panel = $ui/ghost_tooltip
 @onready var game_ui: CanvasLayer = $GameUI
 @onready var ball: GolfBall = $Ball
+@onready var dialogue_box: CanvasLayer = $DialogueBox
 
 const ghost_scenes := {
 	"push_ghost": preload("uid://lflf1mx6vwgp"),
@@ -29,9 +30,14 @@ func _ready() -> void:
 		game_ui.menu_requested.connect(_on_menu_requested)
 		game_ui.continue_requested.connect(_on_continue_requested)
 	
+	# Connect EventBus signals
+	if EventBus:
+		EventBus.ghost_force_applied.connect(_on_ghost_force_applied)
+	
 	# Reset game data for new game
 	if GameData:
 		GameData.reset_game()
+	ray_cast.clear_ghosts()
 
 func _process(delta: float) -> void:
 	state_machine.process(delta)
@@ -76,6 +82,7 @@ func _on_restart_requested() -> void:
 	shot_counter = 0
 	if GameData:
 		GameData.reset_game()
+	ray_cast.clear_ghosts()
 	get_tree().reload_current_scene()
 
 func _on_menu_requested() -> void:
@@ -90,3 +97,21 @@ func _on_continue_requested() -> void:
 	get_tree().reload_current_scene()
 	ray_cast.clear_ghosts()
 	state_machine.on_child_transition(state_machine.current_state, "ball_cam_state")
+
+# Dialogue System
+func show_dialogue(text: String, portrait: Texture2D = null, duration: float = 0.0) -> void:
+	"""Display a dialogue message. Only works in ball_camera_state."""
+	if dialogue_box:
+		dialogue_box.show_dialogue(text, portrait, duration)
+
+func hide_dialogue() -> void:
+	if dialogue_box:
+		dialogue_box.hide_dialogue()
+
+func is_dialogue_active() -> bool:
+	return dialogue_box and dialogue_box.is_displaying
+
+# Event Bus Handlers
+func _on_ghost_force_applied(ghost_type: int, force_power: float) -> void:
+	# Show "Woah!" dialogue when a ghost affects the ball
+	show_dialogue("Woah!", null, 1.5)

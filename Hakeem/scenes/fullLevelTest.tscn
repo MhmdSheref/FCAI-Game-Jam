@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_ah40i"]
 [ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="13_ah40i"]
 [ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="14_gameui"]
+[ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="15_dialogue"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q1rpn"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -93,7 +94,9 @@ visible = false
 [node name="Killzone" parent="GameManager" unique_id=258273182 instance=ExtResource("13_ah40i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6061659, -2.4635687, -1.5597734)
 
-[node name="GameUI" parent="GameManager" instance=ExtResource("14_gameui")]
+[node name="GameUI" parent="GameManager" unique_id=659565879 instance=ExtResource("14_gameui")]
+
+[node name="DialogueBox" parent="GameManager" unique_id=1693373207 instance=ExtResource("15_dialogue")]
 
 [connection signal="ball_entered" from="GameManager/Hole" to="GameManager" method="_on_hole_ball_entered"]
 [connection signal="changed_ghost_selection" from="GameManager/ui/ghost_selector" to="GameManager" method="_on_ghost_selector_changed_ghost_selection"]

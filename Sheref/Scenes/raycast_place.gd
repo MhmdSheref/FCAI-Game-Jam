@@ -13,7 +13,7 @@ func _process(_delta: float) -> void:
 	if is_colliding() && freecam_3d.movement_active:
 		if building_scene and not ghost_instance:
 			ghost_instance = building_scene.instantiate()
-			get_tree().root.add_child(ghost_instance)
+			get_tree().current_scene.add_child(ghost_instance)
 			
 			# Trigger the ghost effect
 			if ghost_instance.has_method("set_as_ghost"):
@@ -35,10 +35,23 @@ func _process(_delta: float) -> void:
 	else:
 		if ghost_instance: ghost_instance.visible = false
 
+func is_tile_occupied(position: Vector3) -> bool:
+	for ghost in ghost_list:
+		if ghost.global_position.is_equal_approx(position):
+			return true
+	return false
+
 func place_building():
 	if freecam_3d.movement_active:
 		if ghost_instance:
-			var ghost_distance_from_ball = ghost_instance.global_position - ball.global_position
+			var target_pos = ghost_instance.global_position
+			
+			# Check if tile is already occupied
+			if is_tile_occupied(target_pos):
+				print("tile already occupied")
+				return
+			
+			var ghost_distance_from_ball = target_pos - ball.global_position
 			if ghost_distance_from_ball.length() >= 4.0:
 				# Turn it into a real building
 				if ghost_instance.has_method("set_as_ghost"):

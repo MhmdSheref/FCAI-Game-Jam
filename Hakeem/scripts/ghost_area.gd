@@ -18,6 +18,11 @@ func apply_forces():
 					affected_bodies.append(body)
 				ghost.affect_body(body)
 				print(str(ghost) + " applied force of type " + str(ghost.force_type))
+				
+				# Emit event for other systems (dialogue, etc.)
+				if EventBus:
+					EventBus.emit_ghost_force(ghost.force_type, ghost.force_power)
+				
 				if animation_player:
 					animation_player.play("hit_animation")
 				

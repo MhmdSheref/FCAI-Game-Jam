@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://jy3xt6wybmam"]
 
 [ext_resource type="PackedScene" uid="uid://brvr0b3yd08hg" path="res://Hakeem/scenes/ball.tscn" id="1_6nulu"]
-[ext_resource type="PackedScene" uid="uid://3f623cw042ui" path="res://Hakeem/scenes/ghost.tscn" id="2_ts8rs"]
+[ext_resource type="PackedScene" uid="uid://18t0mhjkicxi" path="res://Sheref/Scenes/bounce_ghost.tscn" id="2_abdon"]
+[ext_resource type="PackedScene" uid="uid://b7avqt5m4t3hy" path="res://Sheref/Scenes/slow_ghost.tscn" id="3_dox5i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kuikj"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -35,12 +36,14 @@ material = SubResource("StandardMaterial3D_kuikj")
 
 [node name="Ball" parent="." unique_id=411611324 instance=ExtResource("1_6nulu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51910305, 0.6115122, -4.1362762)
-shoot_cooldown = 8.0
 
-[node name="Ghost" parent="." unique_id=739776961 instance=ExtResource("2_ts8rs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2)
-force_power = 16.0
-effect_cooldown = 15.0
+[node name="BounceGhost" parent="." unique_id=2036362339 instance=ExtResource("2_abdon")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3839445, 1.5, -3.580167)
+input_ray_pickable = false
+
+[node name="SlowGhost" parent="." unique_id=53678130 instance=ExtResource("3_dox5i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.947248, 1.5, -6.273389)
+input_ray_pickable = false
 
 [editable path="Ball"]
 [editable path="Ball/hit_vfx"]
