@@ -56,6 +56,10 @@ func _ready() -> void:
 # -----------------------------
 func _on_input_event(camera, event, position, normal, shape_idx) -> void:
 	if event.is_action_pressed("left_mb"):
+		# Check if input is blocked by dialogue
+		var game_manager = get_node_or_null("%GameManager")
+		if game_manager and game_manager.is_input_blocked():
+			return
 		if shot_state == ShotState.READY:
 			selected = true
 			drag_start_pos = get_viewport().get_mouse_position()
@@ -63,6 +67,11 @@ func _on_input_event(camera, event, position, normal, shape_idx) -> void:
 
 func _input(event) -> void:
 	if event.is_action_released("left_mb") and selected:
+		# Check if input is blocked by dialogue
+		var game_manager = get_node_or_null("%GameManager")
+		if game_manager and game_manager.is_input_blocked():
+			selected = false
+			return
 		# Calculate power based on screen distance
 		var power_factor = clamp(screen_distance / max_screen_drag, 0.0, 1.0)
 		speed = -(direction * power_factor * max_speed)

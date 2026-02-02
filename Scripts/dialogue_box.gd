@@ -89,6 +89,8 @@ func hide_dialogue() -> void:
 	display_timer.stop()
 	dialogue_finished.emit()
 	EventBus.dialogue_finished.emit()
+	# Consume input to prevent the dismiss click from triggering other actions
+	get_viewport().set_input_as_handled()
 
 func skip_animation() -> void:
 	"""Skip to showing full text immediately"""

@@ -60,6 +60,10 @@ var intro_complete: bool = false
 var transition_complete: bool = false
 var _dialogue_callback: Callable
 
+# Input blocking after dialogue finishes
+var input_blocked: bool = false
+const INPUT_BLOCK_DURATION: float = 0.15  # seconds to block input after dialogue
+
 func _ready() -> void:
 	# Load reporter portrait (with fallback)
 	_load_reporter_portrait()
@@ -169,6 +173,9 @@ func _show_next_dialogue() -> void:
 			_dialogue_callback.call()
 
 func _on_dialogue_finished() -> void:
+	# Block input briefly to prevent dismiss click from triggering other actions
+	_start_input_block()
+	
 	# Only process if we're in a dialogue sequence
 	if current_dialogue_array.size() > 0 and current_dialogue_index < current_dialogue_array.size():
 		current_dialogue_index += 1
@@ -180,6 +187,16 @@ func _on_dialogue_finished() -> void:
 			if _dialogue_callback.is_valid():
 				_dialogue_callback.call()
 			current_dialogue_array = []
+
+func _start_input_block() -> void:
+	input_blocked = true
+	get_tree().create_timer(INPUT_BLOCK_DURATION).timeout.connect(_end_input_block)
+
+func _end_input_block() -> void:
+	input_blocked = false
+
+func is_input_blocked() -> bool:
+	return input_blocked or is_dialogue_active()
 
 # ============================================================================
 # GAME LOGIC

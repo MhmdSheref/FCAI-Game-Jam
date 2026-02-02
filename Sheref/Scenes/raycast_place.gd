@@ -46,8 +46,9 @@ func _process(_delta: float) -> void:
 			ghost_instance.global_position = point
 			ghost_instance.visible = true
 			
-		# Place building on click
-		if Input.is_action_just_pressed("left_mb"): # Or "mouse_left"
+		# Place building on click (only if input is not blocked by dialogue)
+		var game_manager = get_node_or_null("%GameManager")
+		if Input.is_action_just_pressed("left_mb") and (not game_manager or not game_manager.is_input_blocked()):
 			place_building()
 	else:
 		if ghost_instance: ghost_instance.visible = false
