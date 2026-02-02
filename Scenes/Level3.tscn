@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://ehywccd4wy43" path="res://Hakeem/scripts/free_camera_state.gd" id="10_bnsu8"]
 [ext_resource type="PackedScene" uid="uid://1ynfq6j3mvnf" path="res://Sheref/Scenes/ghost_selector.tscn" id="11_al7xm"]
 [ext_resource type="PackedScene" uid="uid://bnwtvfpn55ysb" path="res://Sheref/Scenes/ghost_tooltip.tscn" id="12_81bqa"]
-[ext_resource type="PackedScene" path="res://Hakeem/scenes/killzone.tscn" id="13_yi7gs"]
+[ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="13_yi7gs"]
 [ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="14_dg25f"]
 [ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="15_ffujx"]
 
@@ -109,6 +109,7 @@ visible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6061659, -2.4635687, -1.5597734)
 
 [node name="GameUI" parent="GameManager" unique_id=659565879 instance=ExtResource("14_dg25f")]
+process_mode = 3
 
 [node name="DialogueBox" parent="GameManager" unique_id=1693373207 instance=ExtResource("15_ffujx")]
 

@@ -143,7 +143,54 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "🏠 Menu"
 
+[node name="PausePanel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="PausePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "⏸️ PAUSED"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="PausePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ContinueButton" type="Button" parent="PausePanel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "▶ Continue"
+
+[node name="RestartButton" type="Button" parent="PausePanel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🔄 Restart"
+
+[node name="QuitButton" type="Button" parent="PausePanel/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "🏠 Quit to Menu"
+
 [connection signal="pressed" from="WinPanel/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="WinPanel/VBoxContainer/ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="LosePanel/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="LosePanel/VBoxContainer/ButtonsContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/ButtonsContainer/ContinueButton" to="." method="_on_pause_continue_pressed"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/ButtonsContainer/RestartButton" to="." method="_on_pause_restart_pressed"]
+[connection signal="pressed" from="PausePanel/VBoxContainer/ButtonsContainer/QuitButton" to="." method="_on_pause_quit_pressed"]

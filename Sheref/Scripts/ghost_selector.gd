@@ -67,9 +67,13 @@ func _on_dialogue_requested(_text: String, _portrait: Texture2D, _duration: floa
 	visible = false
 
 func _on_dialogue_finished() -> void:
-	# Only restore visibility if we're still in freecam state
-	var freecam = get_node_or_null("%Freecam3D")
-	if freecam and freecam.movement_active:
+	# Only restore visibility if we were visible before AND we should be showing UI
+	# (i.e., we're in free cam state - intro is complete means normal gameplay)
+	var game_manager = get_node_or_null("%GameManager")
+	if game_manager and game_manager.is_intro_complete():
+		visible = was_visible_before_dialog
+	elif was_visible_before_dialog:
+		# If intro just completed, the next dialogue_finished will restore visibility
 		visible = was_visible_before_dialog
 
 func _on_switch_ghost_left() -> void:
