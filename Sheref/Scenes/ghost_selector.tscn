@@ -2,42 +2,12 @@
 
 [ext_resource type="Script" uid="uid://nxyvl1ut2lf" path="res://Sheref/Scripts/ghost_selector.gd" id="1_706t2"]
 [ext_resource type="ButtonGroup" uid="uid://bg1hgk8s1kmwg" path="res://Sheref/ghost_selection.tres" id="1_dskga"]
-
-[sub_resource type="Gradient" id="Gradient_dskga"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_706t2"]
-gradient = SubResource("Gradient_dskga")
-width = 128
-height = 128
-
-[sub_resource type="Gradient" id="Gradient_pwf4e"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.6039216, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3k4ty"]
-gradient = SubResource("Gradient_pwf4e")
-width = 128
-height = 128
-
-[sub_resource type="Gradient" id="Gradient_nxvh2"]
-offsets = PackedFloat32Array(0.013409962)
-colors = PackedColorArray(0, 0, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xb8kf"]
-gradient = SubResource("Gradient_nxvh2")
-width = 128
-height = 128
-
-[sub_resource type="Gradient" id="Gradient_0yifp"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0.43529412, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_oxwll"]
-gradient = SubResource("Gradient_0yifp")
-width = 128
-height = 128
+[ext_resource type="Texture2D" uid="uid://4xan8cqwfpk7" path="res://Assets/icons/pull.png" id="3_oxwll"]
+[ext_resource type="Texture2D" uid="uid://cqi07hrjvbxvp" path="res://Assets/icons/pull_s.png" id="4_85jgb"]
+[ext_resource type="Texture2D" uid="uid://cl1ht6ds53nf0" path="res://Assets/icons/push.png" id="5_ymtyg"]
+[ext_resource type="Texture2D" uid="uid://bjyjl7q13ifrv" path="res://Assets/icons/push_s.png" id="6_t0usp"]
+[ext_resource type="Texture2D" uid="uid://c5f46pql8g5oh" path="res://Assets/icons/bounce.png" id="7_8r036"]
+[ext_resource type="Texture2D" uid="uid://dw5m268pnk55c" path="res://Assets/icons/bounce_s.png" id="8_pr2e7"]
 
 [node name="PanelContainer" type="PanelContainer" unique_id=719218366]
 anchors_preset = 12
@@ -95,8 +65,8 @@ focus_mode = 0
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("1_dskga")
-texture_normal = SubResource("GradientTexture2D_706t2")
-texture_pressed = SubResource("GradientTexture2D_3k4ty")
+texture_normal = ExtResource("3_oxwll")
+texture_pressed = ExtResource("4_85jgb")
 
 [node name="CountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer" unique_id=560120309]
 layout_mode = 2
@@ -119,8 +89,8 @@ layout_mode = 2
 focus_mode = 0
 toggle_mode = true
 button_group = ExtResource("1_dskga")
-texture_normal = SubResource("GradientTexture2D_xb8kf")
-texture_pressed = SubResource("GradientTexture2D_oxwll")
+texture_normal = ExtResource("5_ymtyg")
+texture_pressed = ExtResource("6_t0usp")
 
 [node name="CountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer2" unique_id=1625259397]
 layout_mode = 2
@@ -139,11 +109,12 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 
 [node name="bounce_ghost" type="TextureButton" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer3" unique_id=259166496]
-modulate = Color(0.3, 0.9, 0.4, 1)
 layout_mode = 2
 focus_mode = 0
 toggle_mode = true
 button_group = ExtResource("1_dskga")
+texture_normal = ExtResource("7_8r036")
+texture_pressed = ExtResource("8_pr2e7")
 
 [node name="CountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer3" unique_id=1074020678]
 layout_mode = 2
