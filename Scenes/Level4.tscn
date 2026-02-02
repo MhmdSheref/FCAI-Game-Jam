@@ -46,7 +46,7 @@ unique_name_in_owner = true
 script = ExtResource("1_uw8xp")
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_4upjg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.29841045, -15.010636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.29841045, 13.470305)
 
 [node name="CollisionShape3D" parent="GameManager/Hole" index="0" unique_id=2140770143]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016657352, -0.18662739, 0.010822296)
