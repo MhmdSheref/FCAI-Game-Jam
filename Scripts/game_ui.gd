@@ -53,6 +53,7 @@ func _pause_game() -> void:
 	print("_pause_game called")
 	is_paused = true
 	pause_panel.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)  # Show cursor for menu
 	get_tree().paused = true
 
 func _resume_game() -> void:
@@ -60,6 +61,10 @@ func _resume_game() -> void:
 	is_paused = false
 	pause_panel.visible = false
 	get_tree().paused = false
+	# Restore mouse capture if freecam was active
+	var freecam = get_node_or_null("%Freecam3D")
+	if freecam and freecam.movement_active:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_score_updated(shots: int) -> void:
 	current_shots = shots

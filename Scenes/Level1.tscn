@@ -46,7 +46,7 @@ shadow_enabled = true
 unique_name_in_owner = true
 script = ExtResource("1_bqw1j")
 nextSecene = ExtResource("2_ug0sv")
-intro_dialogues = Array[String](["WIZARD: Golf! facinating isn't it?", "WIZARD: people will chear you on just for manipulating a physical object to a designated spot.", "WIZARD: A task made trivial by the power of ghostly manipulation.", "WIZARD: I feel like I need a refresher, its been some time since I contacted any ghosts...", "WIZARD: Use WASD to move the camera and look around with the mouse.", "WIZARD: Use the \"tab\" key to unlock your mouse cursor.", "WIZARD: Once you're ready, press B to switch to ball mode and take your shot!"])
+intro_dialogues = Array[String](["WIZARD: Golf! facinating isn't it?", "WIZARD: people will chear you on just for manipulating a physical object to a designated spot.", "WIZARD: A task made trivial by the power of ghostly manipulation.", "WIZARD: I feel like I need a refresher, its been some time since I contacted any ghosts...", "WIZARD: Use WASD to move the camera and look around with the mouse.", "WIZARD: Use Q and E to switch between ghost types", "WIZARD: Once you're ready, press B to switch to ball mode and take your shot!"])
 transition_dialogues = Array[String](["REPORTER: And we're live! The mysterious wizard golfer is about to take their shot!", "WIZARD: Just watch and learn...", "REPORTER: The tension is palpable! What supernatural forces will they unleash?"])
 
 [node name="Hole" parent="GameManager" unique_id=36256616 instance=ExtResource("2_6xoqc")]

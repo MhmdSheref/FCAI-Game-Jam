@@ -24,7 +24,7 @@ var wizard_portrait: Texture2D = preload("res://Hakeem/assets/portraits/wizard_p
 var reporter_portrait: Texture2D = null
 
 # Character enum for easy reference
-enum Character { WIZARD, REPORTER }
+enum Character {WIZARD, REPORTER}
 
 # ============================================================================
 # DIALOGUE SYSTEM
@@ -51,7 +51,7 @@ enum Character { WIZARD, REPORTER }
 
 @export_group("Dialogue Settings")
 ## Duration each dialogue stays on screen (0 = wait for click)
-@export var dialogue_duration: float = 0.0
+@export var dialogue_duration: float = 10.0
 
 # Dialogue state tracking
 var current_dialogue_index: int = 0
@@ -62,7 +62,7 @@ var _dialogue_callback: Callable
 
 # Input blocking after dialogue finishes
 var input_blocked: bool = false
-const INPUT_BLOCK_DURATION: float = 0.15  # seconds to block input after dialogue
+const INPUT_BLOCK_DURATION: float = 0.15 # seconds to block input after dialogue
 
 func _ready() -> void:
 	# Load reporter portrait (with fallback)
@@ -98,7 +98,7 @@ func _load_reporter_portrait() -> void:
 	if ResourceLoader.exists(reporter_path):
 		reporter_portrait = load(reporter_path)
 	else:
-		reporter_portrait = null  # Will show empty portrait
+		reporter_portrait = null # Will show empty portrait
 
 func _get_portrait_for_character(character: Character) -> Texture2D:
 	match character:
@@ -113,11 +113,11 @@ func _parse_dialogue_line(line: String) -> Dictionary:
 	var result = {"character": Character.WIZARD, "text": line, "portrait": wizard_portrait}
 	
 	if line.begins_with("WIZARD:"):
-		result.text = line.substr(7)  # Remove "WIZARD:"
+		result.text = line.substr(7) # Remove "WIZARD:"
 		result.character = Character.WIZARD
 		result.portrait = wizard_portrait
 	elif line.begins_with("REPORTER:"):
-		result.text = line.substr(9)  # Remove "REPORTER:"
+		result.text = line.substr(9) # Remove "REPORTER:"
 		result.character = Character.REPORTER
 		result.portrait = reporter_portrait
 	# If no prefix, default to wizard
@@ -226,7 +226,7 @@ func _on_ghost_selector_changed_ghost_selection(button) -> void:
 		print("Ghost type not found: ", button)
 		return
 	if ray_cast.ghost_instance:
-		ray_cast.ghost_instance.queue_free() #clear ghost instance to immediately switch to the new ghost type
+		ray_cast.ghost_instance.queue_free() # clear ghost instance to immediately switch to the new ghost type
 	ray_cast.ghost_instance = null
 	ray_cast.building_scene = ghost_scenes[button]
 	ray_cast.set_ghost_type(button)

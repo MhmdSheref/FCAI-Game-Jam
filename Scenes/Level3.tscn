@@ -87,7 +87,7 @@ building_scene = ExtResource("7_85b6l")
 
 [node name="StateMachine" type="Node" parent="GameManager" unique_id=235503467 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_qq3uj")
-initial_state = NodePath("ball_camera_state")
+initial_state = NodePath("free_camera_state")
 
 [node name="ball_camera_state" type="Node" parent="GameManager/StateMachine" unique_id=472957464]
 script = ExtResource("9_e63ni")

@@ -14,7 +14,7 @@ class_name Freecam3D
 ## Speed up / down by scrolling the mouse whell down / up
 @export var invert_speed_controls: bool = false
 
-@export var overlay_text: bool = true
+@export var overlay_text: bool = false
 
 ## Pivot node for camera looking around
 @onready var pivot := Node3D.new()
@@ -33,7 +33,6 @@ var movement_active := false:
 	set(val):
 		movement_active = val
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if movement_active else Input.MOUSE_MODE_VISIBLE)
-		display_message("[Movement ON]" if movement_active else "[Movement OFF]")
 
 ## The current maximum speed. Lower or higher it by scrolling the mouse wheel.
 var target_speed := MIN_SPEED
@@ -65,18 +64,17 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
 	if Input.is_action_just_released("__debug_camera_toggle"):
 		movement_active = not movement_active
 	
 	if movement_active:
 		var dir = Vector3.ZERO
-		if Input.is_action_pressed("__debug_camera_forward"): 	dir.z -= 1
-		if Input.is_action_pressed("__debug_camera_back"): 		dir.z += 1
-		if Input.is_action_pressed("__debug_camera_left"): 		dir.x -= 1
-		if Input.is_action_pressed("__debug_camera_right"): 	dir.x += 1
-		if Input.is_action_pressed("__debug_camera_up"): 		dir.y += 1
-		if Input.is_action_pressed("__debug_camera_down"): 		dir.y -= 1
+		if Input.is_action_pressed("__debug_camera_forward"): dir.z -= 1
+		if Input.is_action_pressed("__debug_camera_back"): dir.z += 1
+		if Input.is_action_pressed("__debug_camera_left"): dir.x -= 1
+		if Input.is_action_pressed("__debug_camera_right"): dir.x += 1
+		if Input.is_action_pressed("__debug_camera_up"): dir.y += 1
+		if Input.is_action_pressed("__debug_camera_down"): dir.y -= 1
 		
 		dir = dir.normalized()
 		dir = dir.rotated(Vector3.UP, pivot.rotation.y)
@@ -91,15 +89,13 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
 			pivot.rotate_y(-event.relative.x * MOUSE_SENSITIVITY)
 			rotate_x(-event.relative.y * MOUSE_SENSITIVITY)
-			rotation.x = clamp(rotation.x, -PI/2, PI/2)
+			rotation.x = clamp(rotation.x, -PI / 2, PI / 2)
 		
 		var speed_up = func():
 			target_speed = clamp(target_speed + 0.15, MIN_SPEED, MAX_SPEED)
-			display_message("[Speed up] " + str(target_speed))
 			
 		var slow_down = func():
 			target_speed = clamp(target_speed - 0.15, MIN_SPEED, MAX_SPEED)
-			display_message("[Slow down] " + str(target_speed))
 		
 		# Speed up and down with the mouse wheel
 		if event is InputEventMouseButton:
@@ -127,12 +123,12 @@ func _make_label(text: String) -> Label:
 func _add_keybindings() -> void:
 	var actions = InputMap.get_actions()
 	if "__debug_camera_forward" not in actions: _add_key_input_action("__debug_camera_forward", KEY_W)
-	if "__debug_camera_back" 	not in actions: _add_key_input_action("__debug_camera_back", KEY_S)
-	if "__debug_camera_left" 	not in actions: _add_key_input_action("__debug_camera_left", KEY_A)
-	if "__debug_camera_right" 	not in actions: _add_key_input_action("__debug_camera_right", KEY_D)
-	if "__debug_camera_up" 		not in actions: _add_key_input_action("__debug_camera_up", KEY_SPACE)
-	if "__debug_camera_down" 	not in actions: _add_key_input_action("__debug_camera_down", KEY_SHIFT)
-	if "__debug_camera_toggle" 	not in actions: _add_key_input_action("__debug_camera_toggle", toggle_key)
+	if "__debug_camera_back" not in actions: _add_key_input_action("__debug_camera_back", KEY_S)
+	if "__debug_camera_left" not in actions: _add_key_input_action("__debug_camera_left", KEY_A)
+	if "__debug_camera_right" not in actions: _add_key_input_action("__debug_camera_right", KEY_D)
+	if "__debug_camera_up" not in actions: _add_key_input_action("__debug_camera_up", KEY_SPACE)
+	if "__debug_camera_down" not in actions: _add_key_input_action("__debug_camera_down", KEY_SHIFT)
+	if "__debug_camera_toggle" not in actions: _add_key_input_action("__debug_camera_toggle", toggle_key)
 
 
 func _add_key_input_action(name: String, key: Key) -> void:

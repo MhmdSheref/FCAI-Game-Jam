@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ci5533xnu4r6" path="res://Hakeem/scenes/killzone.tscn" id="14_m2kki"]
 [ext_resource type="PackedScene" uid="uid://dgameuiscene" path="res://Scenes/game_ui.tscn" id="15_lt6qp"]
 [ext_resource type="PackedScene" path="res://Scenes/dialogue_box.tscn" id="16_aruju"]
+[ext_resource type="PackedScene" uid="uid://dgameendscene" path="res://Scenes/game_end.tscn" id="17_gameend"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q1rpn"]
 sky_top_color = Color(0.3156387, 0.400838, 0.8336093, 1)
@@ -44,6 +45,7 @@ shadow_enabled = true
 [node name="GameManager" type="Node" parent="." unique_id=175576669]
 unique_name_in_owner = true
 script = ExtResource("1_uw8xp")
+nextSecene = ExtResource("17_gameend")
 intro_dialogues = Array[String](["WIZARD: One more round and I'll win.", "WIZARD: Better place my ghosts strategically."])
 transition_dialogues = Array[String](["REPORTER: This wizard guy is definetly cheating!", "REPORTER: It's hard to get visual proof though..."])
 
@@ -70,7 +72,7 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Ball" parent="GameManager" unique_id=411611324 instance=ExtResource("5_4uhwj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2812233, 0.37401742, 7.8896847)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2812233, 0.37401742, 2.9589972)
 
 [node name="Freecam3D" type="Camera3D" parent="GameManager" unique_id=835960371]
 unique_name_in_owner = true
@@ -85,7 +87,7 @@ building_scene = ExtResource("8_8f1kp")
 
 [node name="StateMachine" type="Node" parent="GameManager" unique_id=235503467 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("9_7tujh")
-initial_state = NodePath("ball_camera_state")
+initial_state = NodePath("free_camera_state")
 
 [node name="ball_camera_state" type="Node" parent="GameManager/StateMachine" unique_id=472957464]
 script = ExtResource("10_2q3xy")
