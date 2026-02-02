@@ -32,7 +32,8 @@ func _load_sounds() -> void:
 	# Attempt to load sound files from Assets/Sounds
 	var sound_files = {
 		"hit": "res://Assets/Sounds/ball_hit.wav",
-		"ghost": "res://Assets/Sounds/ghost_activate.wav",
+		"ghost_activate_1": "res://Assets/Sounds/ghost_activate_1.wav",
+		"ghost_activate_2": "res://Assets/Sounds/ghost_activate_2.wav",
 		"ghost_place_1": "res://Assets/Sounds/ghost_place_1.wav",
 		"ghost_place_2": "res://Assets/Sounds/ghost_place_2.wav",
 		"win": "res://Assets/Sounds/win.wav",
@@ -97,7 +98,9 @@ func play_hit() -> void:
 	play_sfx("hit")
 
 func play_ghost() -> void:
-	play_sfx("ghost")
+	# Randomly choose between ghost_activate_1 and ghost_activate_2
+	var variant = randi_range(1, 2)
+	play_sfx("ghost_activate_%d" % variant)
 
 func play_win() -> void:
 	play_sfx("win")

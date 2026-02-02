@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bqw431u4gch8c" path="res://Hakeem/scripts/ball_camera.gd" id="1_d60mj"]
 [ext_resource type="Script" uid="uid://dlxiis7mxjxjp" path="res://Hakeem/scripts/golf_ball.gd" id="1_ij5cq"]
 [ext_resource type="Material" uid="uid://cqpqqba33xhj5" path="res://Hakeem/assets/materials/golf_ball_material.tres" id="3_edty1"]
-[ext_resource type="Script" path="res://Hakeem/scripts/camera_pivot.gd" id="3_tw82i"]
+[ext_resource type="Script" uid="uid://bj7mvhb5ctrks" path="res://Hakeem/scripts/camera_pivot.gd" id="3_tw82i"]
 [ext_resource type="Shader" uid="uid://b78tpi50pgmbs" path="res://addons/GPUTrail-main/shaders/trail.gdshader" id="5_ggg6b"]
 [ext_resource type="Shader" uid="uid://b45cdw6kngdi7" path="res://addons/GPUTrail-main/shaders/trail_draw_pass.gdshader" id="6_bth5r"]
 [ext_resource type="Script" uid="uid://bjbp3hkyndjos" path="res://addons/GPUTrail-main/GPUTrail3D.gd" id="7_ng0vs"]
@@ -57,6 +57,7 @@ material = SubResource("ShaderMaterial_02lvv")
 
 [node name="Ball" type="RigidBody3D" unique_id=411611324]
 physics_material_override = SubResource("PhysicsMaterial_edty1")
+continuous_cd = true
 linear_damp = 1.0
 script = ExtResource("1_ij5cq")
 max_speed = 40
