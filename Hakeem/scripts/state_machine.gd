@@ -16,6 +16,11 @@ func _ready() -> void:
 			states[child.name.to_lower()] = child
 			child.transition.connect(on_child_transition)
 	if initial_state:
+		# Defer entering the initial state to ensure all @onready variables are ready
+		call_deferred("_enter_initial_state")
+
+func _enter_initial_state() -> void:
+	if initial_state:
 		initial_state.enter()
 		current_state = initial_state
 		

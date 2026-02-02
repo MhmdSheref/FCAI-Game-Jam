@@ -109,6 +109,18 @@ button_group = ExtResource("1_dskga")
 texture_normal = SubResource("GradientTexture2D_706t2")
 texture_pressed = SubResource("GradientTexture2D_3k4ty")
 
+[node name="CountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 2
+vertical_alignment = 2
+
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer" unique_id=1801023955]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
@@ -121,6 +133,18 @@ button_group = ExtResource("1_dskga")
 texture_normal = SubResource("GradientTexture2D_xb8kf")
 texture_pressed = SubResource("GradientTexture2D_oxwll")
 
+[node name="CountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 2
+vertical_alignment = 2
+
 [node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
@@ -132,6 +156,18 @@ toggle_mode = true
 button_group = ExtResource("1_dskga")
 modulate = Color(0.3, 0.9, 0.4, 1)
 
+[node name="CountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 2
+vertical_alignment = 2
+
 [node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
@@ -142,3 +178,15 @@ focus_mode = 0
 toggle_mode = true
 button_group = ExtResource("1_dskga")
 modulate = Color(0.6, 0.4, 0.9, 1)
+
+[node name="CountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/HBoxContainer/PanelContainer4"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 2
+vertical_alignment = 2

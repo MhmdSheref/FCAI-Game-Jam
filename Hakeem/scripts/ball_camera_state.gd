@@ -9,12 +9,13 @@ func enter():
 		print("entered ballcam state")
 
 func process(delta: float) -> void:
-	# Don't allow state transitions while dialogue is active
+	# Don't allow any actions while dialogue is active
 	if game_manager.is_dialogue_active():
 		return
-		
-	if Input.is_action_just_pressed("switch_cam"):
-		transition.emit(self, "free_camera_state")
+	
+	# Ball camera state is final - no switching back to free cam
+	# Player must restart the level to get back to free cam mode
+	pass
 
 # Dialogue helper methods - call these while in ball_camera_state
 func show_message(text: String, portrait: Texture2D = null, duration: float = 0.0) -> void:
